@@ -1,0 +1,17 @@
+<nav class="navbar navbar-dark bg-inverse">
+
+  <%= link_to "Tests", root_path, class: "navbar-brand" %>
+
+
+  <div class="pull-xs-right">
+    <%- if current_user %>
+      <span>
+        <%= current_user.email %>
+      </span>
+      <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "btn btn-warning-outline" %>
+    <%- else %>
+      <%= link_to 'Log In', new_user_session_path, class: "btn btn-success-outline" %>
+      <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-success-outline" %>
+  <%- end %>
+  </div>
+</nav>

@@ -12,6 +12,9 @@ gem 'puma', '~> 3.0'
 # Use PostgreSQL as a database
 gem 'pg'
 
+# Use Bootstrap for front-end
+gem 'bootstrap', '~> 4.0.0.alpha3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 

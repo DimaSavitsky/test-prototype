@@ -1,0 +1,5 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: hitlab_test_prototype_development
+  pool: 5

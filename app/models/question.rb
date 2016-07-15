@@ -1,7 +1,5 @@
 class Question < ApplicationRecord
 
-  validates :test, presence: true
-
-  belongs_to :test
+  belongs_to :test_variable
 
 end

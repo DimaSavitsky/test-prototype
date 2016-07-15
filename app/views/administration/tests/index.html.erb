@@ -1,21 +1,26 @@
-<h1>Tests</h1>
+<h2>Tests</h2>
 
-<table>
-  <thead>
+<table class="table table-striped">
+
+  <thead class="thead-default">
     <tr>
+      <th>#</th>
+
       <th>Name</th>
-      <th colspan="3"></th>
+      <th>Variables</th>
+
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @tests.each do |test| %>
       <tr>
-        <td><%= test.name %></td>
+        <th class="row"><%= test.id %></th>
 
+        <td><%= link_to test.name, administration_test_path(test)  %></td>
+        <td><%= test_variables_for(test) %></td>
 
-        <td><%= link_to 'Show', administration_test_path(test) %></td>
-        <td><%= link_to 'Edit', edit_administration_test_path(test) %></td>
         <td><%= link_to 'Destroy', administration_test_path(test), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

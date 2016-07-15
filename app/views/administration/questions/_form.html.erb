@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :test_variable %>
+    <%= f.collection_select(:test_variable_id, test.test_variables, :id, :name) %>
+  </div>
+
+  <div class="field">
     <%= f.label :text %>
     <%= f.text_area :text %>
   </div>

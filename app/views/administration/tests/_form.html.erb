@@ -16,6 +16,18 @@
     <%= f.text_field :name %>
   </div>
 
+  <div class="field">
+    <h2>Test Variables</h2>
+
+    <%= f.fields_for :test_variables do |variable| %>
+      <%= render 'test_variable_fields', f: variable %>
+    <%- end %>
+
+    <div class="links">
+      <%= link_to_add_association 'add variable', f, :test_variables %>
+    </div>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

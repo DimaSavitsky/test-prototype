@@ -3,17 +3,23 @@
   <%= @test.name %>
 </p>
 
+<p>
+  <strong>Variables:</strong>
+  <%= test_variables_for(@test) %>
+</p>
+
 <%= link_to 'Edit', edit_administration_test_path(@test) %>
 
 <hr>
 
 <h1>Questions</h1>
 
-<table>
-  <thead>
+<table class="table table-striped">
+  <thead class="thead-default">
   <tr>
     <th>Text</th>
-    <th colspan="3"></th>
+    <th>Variable</th>
+    <th colspan="2"></th>
   </tr>
   </thead>
 
@@ -21,7 +27,7 @@
   <% @test.questions.each do |question| %>
     <tr>
       <td><%= question.text %></td>
-      <td><%= link_to 'Show', [:administration, @test, question] %></td>
+      <td><%= question.test_variable.name %></td>
       <td><%= link_to 'Edit', edit_administration_test_question_path(@test, question) %></td>
       <td><%= link_to 'Destroy',  [:administration, @test, question] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>

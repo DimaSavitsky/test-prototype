@@ -3,7 +3,7 @@ module Administration
     before_action :set_test, only: [:show, :edit, :update, :destroy]
 
     def index
-      @tests = Test.all
+      @tests = Test.includes(:test_variables).all
     end
 
     def show
@@ -57,7 +57,7 @@ module Administration
     end
 
     def test_params
-      params.require(:test).permit(:name)
+      params.require(:test).permit(:name, test_variables_attributes: [:id, :name, :_destroy])
     end
 
   end

@@ -55,7 +55,7 @@ module Administration
   
       # Never trust parameters from the scary internet, only allow the white list through.
       def question_params
-        params.require(:question).permit(:text, :test_variable_id)
+        params.require(:question).permit(:text, :test_variable_id, question_responses_attributes: [:id, :text, :points, :_destroy])
       end
   end
 end

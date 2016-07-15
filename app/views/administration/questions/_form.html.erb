@@ -11,15 +11,46 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <fieldset class="form-group">
     <%= f.label :test_variable %>
     <%= f.collection_select(:test_variable_id, test.test_variables, :id, :name) %>
-  </div>
+  </fieldset>
 
-  <div class="field">
+  <fieldset class="form-group">
     <%= f.label :text %>
     <%= f.text_area :text %>
-  </div>
+  </fieldset>
+
+
+  <fieldset class="form-group">
+    <h2>Variant Responses</h2>
+
+    <table class="table responses-table">
+      <tbody class="responses">
+      <tr>
+        <td>Text</td>
+        <td>Points</td>
+      </tr>
+      <%= f.fields_for :question_responses do |variable| %>
+        <%= render 'question_response_fields', f: variable %>
+      <%- end %>
+      </tbody>
+
+
+      <tr class="links">
+        <td></td>
+        <td>
+          <%= link_to_add_association f, :question_responses,
+                                      'data-association-insertion-node' => '.responses',
+                                      'data-association-insertion-method' => 'append' do %>
+            Add Variant
+          <%- end %>
+        </td>
+      </tr>
+
+    </table>
+  </fieldset>
+
 
   <div class="actions">
     <%= f.submit %>

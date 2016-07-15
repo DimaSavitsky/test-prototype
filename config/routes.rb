@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
+  namespace :administration do
+    resources :tests
+  end
+
   resources :tests
 
   root to: 'tests#index'

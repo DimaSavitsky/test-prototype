@@ -1,0 +1,6 @@
+<h1>Editing Question</h1>
+
+<%= render 'form', { test: @test, question: @question } %>
+
+<%= link_to 'Show', [:administration, @test, @question] %> |
+<%= link_to 'Back', administration_test_path(@test) %>

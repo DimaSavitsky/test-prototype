@@ -1,0 +1,7 @@
+<p>
+  <strong>Text:</strong>
+  <%= @question.text %>
+</p>
+
+<%= link_to 'Edit', edit_administration_test_question_path(@test, @question) %> |
+<%= link_to 'Back', administration_test_path(@test) %>

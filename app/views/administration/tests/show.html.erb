@@ -3,5 +3,37 @@
   <%= @test.name %>
 </p>
 
-<%= link_to 'Edit', edit_administration_test_path(@test) %> |
+<%= link_to 'Edit', edit_administration_test_path(@test) %>
+
+<hr>
+
+<h1>Questions</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Text</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @test.questions.each do |question| %>
+    <tr>
+      <td><%= question.text %></td>
+      <td><%= link_to 'Show', [:administration, @test, question] %></td>
+      <td><%= link_to 'Edit', edit_administration_test_question_path(@test, question) %></td>
+      <td><%= link_to 'Destroy',  [:administration, @test, question] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question', new_administration_test_question_path(@test) %>
+
+
+<hr>
+
 <%= link_to 'Back', administration_tests_path %>

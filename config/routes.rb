@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   }
 
   namespace :administration do
-    resources :tests
+    resources :tests do
+      resources :questions, except: [:index]
+    end
   end
 
   resources :tests

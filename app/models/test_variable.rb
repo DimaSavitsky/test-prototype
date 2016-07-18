@@ -8,7 +8,7 @@ class TestVariable < ApplicationRecord
 
   def max_value
     self.questions.includes(:question_responses).sum do |question|
-      question.question_responses.maximum(:points)
+      question.question_responses.maximum(:points) || 0
     end
   end
 

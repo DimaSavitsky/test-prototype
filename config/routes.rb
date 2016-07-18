@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   namespace :administration do
     resources :tests do
       resources :questions, except: [:index, :show]
+      resources :test_variables, only: [] do
+        resource :test_result, only: [:edit, :update]
+      end
     end
   end
 

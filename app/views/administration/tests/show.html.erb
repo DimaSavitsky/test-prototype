@@ -41,7 +41,34 @@
 
 <%= link_to 'New Question', new_administration_test_question_path(@test) %>
 
-
 <hr>
+
+<%- if @test.questions.present? %>
+  <h1>Results breakdown</h1>
+
+  <table class="table table-striped">
+    <thead class="thead-default">
+    <tr>
+      <th>Variable</th>
+      <th>Maximum Value</th>
+      <th>Complete?</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @test.test_variables.each do |variable| %>
+      <tr>
+        <th><%= variable.name %></th>
+        <td><%= variable.max_value %></td>
+        <td><%= variable.results_complete? %></td>
+        <td><%= link_to 'Edit', edit_administration_test_test_variable_test_result_path(@test, variable)%></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <hr>
+<%- end %>
 
 <%= link_to 'Back', administration_tests_path %>

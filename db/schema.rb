@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715135830) do
+ActiveRecord::Schema.define(version: 20160718150235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,21 @@ ActiveRecord::Schema.define(version: 20160715135830) do
     t.integer "test_variable_id"
   end
 
+  create_table "test_result_ranges", force: :cascade do |t|
+    t.integer "test_result_id"
+    t.integer "range_start"
+    t.integer "range_stop"
+    t.text    "result_message"
+    t.decimal "attribute_score", precision: 4, scale: 2
+    t.index ["test_result_id"], name: "index_test_result_ranges_on_test_result_id", using: :btree
+  end
+
+  create_table "test_results", force: :cascade do |t|
+    t.integer "test_variable_id"
+    t.string  "attribute_name"
+    t.index ["test_variable_id"], name: "index_test_results_on_test_variable_id", using: :btree
+  end
+
   create_table "test_variables", force: :cascade do |t|
     t.string  "name"
     t.integer "test_id"
@@ -35,8 +50,10 @@ ActiveRecord::Schema.define(version: 20160715135830) do
 
   create_table "tests", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "time_limit"
+    t.boolean  "published",  default: false
   end
 
   create_table "users", force: :cascade do |t|

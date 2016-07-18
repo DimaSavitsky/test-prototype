@@ -1,0 +1,59 @@
+<h1>Editing Test Results for variable <%= @test_variable.name %></h1>
+
+<%= form_for @test_result, url: administration_test_test_variable_test_result_path(@test, @test_variable), method: :put  do |f| %>
+
+
+  <% if @test_result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@test_result.errors.count, "error") %> prohibited this test from being saved:</h2>
+
+      <ul>
+        <% @test_result.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset class="form-group">
+    <%= f.label :attribute_name %>
+    <%= f.text_field :attribute_name %>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <h2>Result Ranges</h2>
+
+    <table class="table responses-table">
+      <tbody class="ranges">
+      <tr>
+        <th>Range Start</th>
+        <th>Range Stop</th>
+        <th>Result message</th>
+        <th>Attribute score</th>
+      </tr>
+      <%= f.fields_for :test_result_ranges do |variable| %>
+        <%= render 'test_result_range_fields', f: variable %>
+      <%- end %>
+      </tbody>
+
+      <tr class="links">
+        <td></td>
+        <td>
+          <%= link_to_add_association f, :test_result_ranges,
+                                      'data-association-insertion-node' => '.ranges',
+                                      'data-association-insertion-method' => 'append' do %>
+            Add Range
+          <%- end %>
+        </td>
+      </tr>
+
+    </table>
+  </fieldset>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Back', administration_test_path(@test) %>

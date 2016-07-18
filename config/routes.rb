@@ -10,6 +10,10 @@ Rails.application.routes.draw do
       resources :test_variables, only: [] do
         resource :test_result, only: [:edit, :update]
       end
+      member do
+        put :publish
+        patch :publish
+      end
     end
   end
 

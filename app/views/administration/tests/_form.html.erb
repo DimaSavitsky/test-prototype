@@ -19,6 +19,18 @@
   </fieldset>
 
   <fieldset class="form-group">
+    <%= f.label :time_limit %>
+    <%= f.number_field :time_limit %>
+    <br/>
+    <small class="text-muted">In seconds. Empty or zero for unlimited.</small>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <%= f.label :randomized %>
+    <%= f.check_box :randomized %>
+  </fieldset>
+
+  <fieldset class="form-group">
     <h2>Test Variables</h2>
 
     <table class="table variables-table">

@@ -1,6 +1,6 @@
 module Administration
   class TestsController < AdministrationController
-    before_action :set_test, only: [:show, :edit, :update, :destroy]
+    before_action :set_test, only: [:show, :edit, :update, :destroy, :publish]
 
     def index
       @tests = Test.includes(:test_variables).all
@@ -31,15 +31,11 @@ module Administration
     end
 
     def update
-      respond_to do |format|
-        if @test.update(test_params)
-          format.html { redirect_to [:administration, @test], notice: 'Test was successfully updated.' }
-          format.json { render :show, status: :ok, location: @test }
-        else
-          format.html { render :edit }
-          format.json { render json: @test.errors, status: :unprocessable_entity }
-        end
-      end
+      update_handler( @test.update(test_params) )
+    end
+
+    def publish
+      update_handler( @test.update(published: true) )
     end
 
     def destroy
@@ -57,7 +53,21 @@ module Administration
     end
 
     def test_params
-      params.require(:test).permit(:name, test_variables_attributes: [:id, :name, :_destroy])
+      params.require(:test).permit(
+        :name, :time_limit, :randomized,
+        test_variables_attributes: [:id, :name, :_destroy])
+    end
+
+    def update_handler(update_result)
+      respond_to do |format|
+        if update_result
+          format.html { redirect_to [:administration, @test], notice: 'Test was successfully updated.' }
+          format.json { render :show, status: :ok, location: @test }
+        else
+          format.html { render :edit }
+          format.json { render json: @test.errors, status: :unprocessable_entity }
+        end
+      end
     end
 
   end

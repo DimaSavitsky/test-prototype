@@ -8,6 +8,17 @@
   <%= test_variables_for(@test) %>
 </p>
 
+<p>
+  <strong>Time Limit:</strong>
+  <%= time_limit_for(@test) %>
+</p>
+
+<%- if @test.randomized %>
+  <p>
+    <strong>Random question order.</strong>
+  </p>
+<%- end %>
+
 <%= link_to 'Edit', edit_administration_test_path(@test) %>
 
 <hr>
@@ -72,3 +83,11 @@
 <%- end %>
 
 <%= link_to 'Back', administration_tests_path %>
+
+<%- if !@test.published && @test.ready_to_publish? %>
+  <%= form_for [:administration, @test], url: { action: :publish } do |f| %>
+    <div class="actions">
+      <%= f.submit 'Publish' %>
+    </div>
+  <% end %>
+<%- end %>

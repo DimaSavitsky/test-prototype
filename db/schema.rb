@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160718150235) do
     t.datetime "updated_at",                 null: false
     t.integer  "time_limit"
     t.boolean  "published",  default: false
+    t.boolean  "randomized", default: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -9,6 +9,8 @@
       <th>Name</th>
       <th>Variables</th>
 
+      <th>Published</th>
+
       <th></th>
     </tr>
   </thead>
@@ -20,6 +22,8 @@
 
         <td><%= link_to test.name, administration_test_path(test)  %></td>
         <td><%= test_variables_for(test) %></td>
+
+        <td><%= test.published %></td>
 
         <td><%= link_to 'Destroy', administration_test_path(test), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

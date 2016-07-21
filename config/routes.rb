@@ -17,8 +17,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :profile, only: [:show]
   resources :tests
 
-  root to: 'tests#index'
+  root to: 'profile#show'
 
 end

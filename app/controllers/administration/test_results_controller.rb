@@ -1,6 +1,6 @@
 module Administration
   class TestResultsController < AdministrationController
-    before_action :set_test
+    load_and_authorize_resource :test, :update
     before_action :set_test_variable
     before_action :set_test_result, only: [:edit, :update]
 
@@ -20,10 +20,6 @@ module Administration
     end
 
     private
-
-    def set_test
-      @test = Test.find(params[:test_id])
-    end
 
     def set_test_variable
       @test_variable = @test.test_variables.find(params[:test_variable_id])

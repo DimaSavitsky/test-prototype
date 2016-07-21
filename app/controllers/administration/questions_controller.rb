@@ -1,6 +1,6 @@
 module Administration
   class QuestionsController < AdministrationController
-    before_action :set_test
+    load_and_authorize_resource :test, :update
     before_action :set_question, only: [:edit, :update, :destroy]
 
     def new
@@ -45,10 +45,6 @@ module Administration
     end
   
     private
-      def set_test
-        @test = Test.find(params[:test_id])
-      end
-
       def set_question
         @question = @test.questions.find(params[:id])
       end

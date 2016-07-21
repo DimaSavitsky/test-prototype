@@ -1,23 +1,22 @@
 module Administration
   class TestsController < AdministrationController
-    before_action :set_test, only: [:show, :edit, :update, :destroy, :publish]
+    load_and_authorize_resource
 
     def index
-      @tests = Test.includes(:test_variables).all
+      @tests = @tests.includes(:test_variables)
     end
 
     def show
     end
 
     def new
-      @test = Test.new
     end
 
     def edit
     end
 
     def create
-      @test = Test.new(test_params)
+      @test.assign_attributes(test_params)
 
       respond_to do |format|
         if @test.save
@@ -47,10 +46,6 @@ module Administration
     end
 
     private
-
-    def set_test
-      @test = Test.find(params[:id])
-    end
 
     def test_params
       params.require(:test).permit(

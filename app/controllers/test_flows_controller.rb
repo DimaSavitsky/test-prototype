@@ -2,6 +2,7 @@ class TestFlowsController < ApplicationController
   load_and_authorize_resource :test
 
   before_filter :set_test_flow_service
+  before_filter :redirect_on_time_limit
 
   def show
   end
@@ -12,7 +13,7 @@ class TestFlowsController < ApplicationController
   end
 
   def set_response
-    if @flow_service.update_response(variant_params[:variant_id])
+    if !@flow_service.test_time_limit_reached? && @flow_service.update_response(variant_params[:variant_id])
       @flow_service.goto( @flow_service.next_question_index )
     else
       flash[:error] = @flow_service.current_response.errors.full_messages
@@ -29,6 +30,13 @@ class TestFlowsController < ApplicationController
 
   def set_test_flow_service
     @flow_service = TestFlowService.new( user: current_user, test: @test )
+  end
+
+  def redirect_on_time_limit
+    if @flow_service.test_time_limit_reached? && !@flow_service.on_last_page?
+      @flow_service.goto_last_page
+      redirect_to [@test, :test_flow]
+    end
   end
 
   def variant_params

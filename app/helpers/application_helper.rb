@@ -21,4 +21,8 @@ module ApplicationHelper
     nil
   end
 
+  def countdown_to(datetime)
+    content_tag(:div, '', 'data-countdown' => datetime )
+  end
+
 end

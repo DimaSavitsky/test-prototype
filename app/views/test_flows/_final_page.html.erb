@@ -1,0 +1,14 @@
+<%- if flow_service.test_time_limit_reached? %>
+  <h2>Time is up.</h2>
+<%- else %>
+  <h2>That's all questions.</h2>
+<%- end %>
+
+  <div class="btn-group btn-group-lg">
+  <%- unless flow_service.test_time_limit_reached? %>
+    <%= link_to 'Start Over',
+                goto_question_test_test_flow_path(test, question_index: 0) ,
+                class: 'btn  btn-secondary' %>
+  <%- end %>
+  <%= button_to 'Finish the test', {action: :finalize}, form_class:  'btn-group btn-group-lg', class: 'btn btn-success' %>
+</div>

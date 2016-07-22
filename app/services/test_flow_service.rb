@@ -24,6 +24,10 @@ class TestFlowService
     test_attempt.update(current_question_id_index: question_index)
   end
 
+  def goto_last_page
+    goto(test_attempt.ordered_question_ids.length + 1)
+  end
+
   def previous_question_index
     test_attempt.current_question_id_index - 1
   end
@@ -34,6 +38,22 @@ class TestFlowService
 
   def on_question?(question_index)
     test_attempt.current_question_id_index == question_index
+  end
+
+  def on_last_page?
+    test_attempt.current_question_id_index >= test_attempt.ordered_question_ids.length
+  end
+
+  def time_limit
+    if test.time_limit
+      test_attempt.started_at + test.time_limit.seconds
+    end
+  end
+
+  def test_time_limit_reached?
+    if test.time_limit
+      @timestamp > test_attempt.started_at + test.time_limit.seconds
+    end
   end
 
   def finalize

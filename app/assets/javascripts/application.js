@@ -11,9 +11,25 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.countdown.min
 //= require tether
 //= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
 //= require cocoon
 //= require_tree .
+
+var ready;
+ready = function() {
+
+  $('[data-countdown]').each(function() {
+    var $this = $(this), finalDate = $(this).data('countdown');
+    $this.countdown(finalDate, function(event) {
+      $this.html(event.strftime('%H:%M:%S'));
+    });
+  });
+
+};
+
+$(document).ready(ready);
+$(document).on('turbolinks:load', ready);

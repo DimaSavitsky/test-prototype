@@ -15,6 +15,10 @@ class TestResult < ApplicationRecord
     valid? && ( test_result_ranges.maximum(:range_stop) == max_value )
   end
 
+  def range_for(score)
+    test_result_ranges.find {|range| range.value_range.include? score }
+  end
+
   private
 
   def check_result_ranges

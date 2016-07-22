@@ -1,0 +1,20 @@
+<%= link_to 'To Profile', profile_path %>
+
+<table class="table">
+  <thead>
+    <th>Variable</th>
+    <th>Score</th>
+    <th>Maximum Score</th>
+    <th>Message</th>
+  </thead>
+  <tbody>
+    <%- @test_result.test.test_variables.each do |variable| %>
+      <tr>
+        <td><%= variable.name %></td>
+        <td><%= @test_result.score(variable.id) %></td>
+        <td><%= variable.max_value %></td>
+        <td><%= variable.test_result.range_for( @test_result.score(variable.id) ).result_message %></td>
+      </tr>
+    <%- end %>
+  </tbody>
+</table>

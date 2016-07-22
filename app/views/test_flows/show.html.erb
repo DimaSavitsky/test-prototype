@@ -1,0 +1,55 @@
+<div class="card card-block text-xs-center">
+
+    <div class="btn-group" role="group" aria-label="First group">
+      <%- @flow_service.ordered_question_ids.each_with_index do |question_id, index| %>
+
+        <%- if @flow_service.on_question?(index) %>
+          <button class="btn"><%= index + 1 %></button>
+        <%- else %>
+          <%= link_to (index + 1), goto_question_test_test_flow_path(@test, question_index: index) ,
+                      class: "btn btn-secondary #{'btn-success' if question_id.in?(@flow_service.answered_question_ids)}" %>
+        <%- end %>
+
+      <%- end %>
+    </div>
+
+  <%- if @flow_service.current_question_id %>
+
+    <h1 class="card-title">
+      <%= @flow_service.current_question.text %>
+    </h1>
+
+    <%- unless @flow_service.on_question?(0) %>
+      <div class = "btn-group btn-group-lg" >
+        <%= link_to 'Back',
+                    goto_question_test_test_flow_path(@test, question_index:  @flow_service.previous_question_index) ,
+                    class: 'btn  btn-secondary'%>
+      </div>
+    <% end %>
+
+    <%- @flow_service.current_question.question_responses.each do |variant| %>
+
+      <%= form_for :variant, url: set_response_test_test_flow_path(@test), html: { class: "btn-group btn-group-lg" } do |f| %>
+        <%= f.hidden_field :variant_id, value: variant.id %>
+        <%= f.submit variant.text,
+                     class: "btn btn-primary #{ 'btn-success' if variant.id == @flow_service.current_response.question_response_id }" %>
+      <%- end %>
+
+    <%- end %>
+
+  <%- else %>
+    <h2>That's all questions.</h2>
+    <div class="btn-group btn-group-lg">
+      <%= link_to 'Start Over',
+                  goto_question_test_test_flow_path(@test, question_index: 0) ,
+                  class: 'btn  btn-secondary'%>
+      <%= button_to 'Finish the test', {action: :finalize}, form_class:  'btn-group btn-group-lg', class: 'btn btn-success' %>
+    </div>
+  <%- end %>
+
+</div>
+
+
+
+
+

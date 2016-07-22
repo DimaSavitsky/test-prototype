@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718150235) do
+ActiveRecord::Schema.define(version: 20160721140623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,27 @@ ActiveRecord::Schema.define(version: 20160718150235) do
   create_table "questions", force: :cascade do |t|
     t.text    "text"
     t.integer "test_variable_id"
+  end
+
+  create_table "test_attempt_responses", force: :cascade do |t|
+    t.integer  "test_attempt_id"
+    t.integer  "question_id"
+    t.integer  "question_response_id"
+    t.datetime "submitted_at"
+    t.index ["question_id"], name: "index_test_attempt_responses_on_question_id", using: :btree
+    t.index ["question_response_id"], name: "index_test_attempt_responses_on_question_response_id", using: :btree
+    t.index ["test_attempt_id"], name: "index_test_attempt_responses_on_test_attempt_id", using: :btree
+  end
+
+  create_table "test_attempts", force: :cascade do |t|
+    t.integer  "test_id"
+    t.integer  "user_id"
+    t.datetime "started_at"
+    t.datetime "completed_at"
+    t.integer  "ordered_question_ids",                  array: true
+    t.integer  "current_question_id_index", default: 0
+    t.index ["test_id"], name: "index_test_attempts_on_test_id", using: :btree
+    t.index ["user_id"], name: "index_test_attempts_on_user_id", using: :btree
   end
 
   create_table "test_result_ranges", force: :cascade do |t|

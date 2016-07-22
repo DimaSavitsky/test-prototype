@@ -17,9 +17,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :profile, only: [:show]
-  resources :tests
+  resource :profile, only: [:show] do
+    resources :test_results, only: [:show]
+  end
 
-  root to: 'profile#show'
+  resources :tests do
+    resource :test_flow, only: [:show] do
+      get :goto_question
+      post :set_response
+      post :finalize
+    end
+  end
+
+  root to: 'profiles#show'
 
 end

@@ -1,0 +1,17 @@
+<%- @tests.in_groups_of(3).each do |tests_row| %>
+  <div class="row">
+
+    <%- tests_row.compact.each do |test| %>
+      <div class="col-sm-4">
+        <div class="card card-block text-xs-center">
+
+            <div class="card-block">
+            <h4 class="card-title"><%= test.name %></h4>
+              <%= link_to 'Take a test', test_test_flow_path(test) , class: 'btn btn-primary'%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+<%- end %>

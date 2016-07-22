@@ -1,6 +1,7 @@
 class Question < ApplicationRecord
 
   belongs_to :test_variable
+  has_one :test, through: :test_variable
   has_many :question_responses, dependent: :destroy
 
   accepts_nested_attributes_for :question_responses, reject_if: :all_blank, allow_destroy: true

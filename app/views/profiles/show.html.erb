@@ -1,0 +1,27 @@
+<h1>Your Profile</h1>
+
+<%- if @test_results.present? %>
+  <hr>
+  <h3>Test Results</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Test Name</th>
+        <th>Started At</th>
+        <th>Completed At</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%- @test_results.each do |result| %>
+        <tr>
+          <th><%= result.test.name %></th>
+          <td><%= result.started_at %></td>
+          <td><%= result.completed_at %></td>
+          <td><%= link_to 'View', profile_test_result_path(id: result.id) %></td>
+        </tr>
+      <%- end %>
+    </tbody>
+  </table>
+<%- end %>

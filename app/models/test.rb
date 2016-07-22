@@ -9,6 +9,8 @@ class Test < ApplicationRecord
   has_many :questions, through: :test_variables
   has_many :test_results, through: :test_variables
 
+  has_many :test_attempts
+
   accepts_nested_attributes_for :test_variables, reject_if: :all_blank, allow_destroy: true
 
   scope :published, -> { where( published: true ) }

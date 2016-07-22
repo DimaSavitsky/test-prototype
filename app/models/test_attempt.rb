@@ -25,7 +25,7 @@ class TestAttempt < ApplicationRecord
 
   def set_attempt_params
     self.started_at ||= Time.now
-    self.ordered_question_ids ||= self.test.question_ids
+    self.ordered_question_ids ||= self.test.question_ids.tap {|ids| ids.shuffle! if self.test.randomized}
   end
 
 end

@@ -1,0 +1,35 @@
+<%= form_for current_user, url: profile_path do |f| %>
+
+  <fieldset class="form-group">
+    <h2>Abilities</h2>
+
+    <table class="table abilities-table">
+      <tbody class="abilities">
+      <tr>
+        <th>Ability</th>
+        <th>Level</th>
+        <th></th>
+      </tr>
+
+      <%= f.fields_for :user_internal_abilities do |ability| %>
+        <%= render 'user_internal_ability_fields', f: ability %>
+      <%- end %>
+      </tbody>
+
+      <tr class="links">
+        <td></td>
+        <td>
+          <%= link_to_add_association f, :user_internal_abilities,
+                                      'data-association-insertion-node' => '.abilities',
+                                      'data-association-insertion-method' => 'append' do %>
+            New Informed Ability
+          <%- end %>
+        </td>
+      </tr>
+
+    </table>
+  </fieldset>
+
+  <%= f.submit 'Set', class: 'btn btn-primary' %>
+  <%= link_to 'Back', profile_path %>
+<%- end %>

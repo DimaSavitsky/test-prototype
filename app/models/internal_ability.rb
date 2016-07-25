@@ -1,0 +1,3 @@
+class InternalAbility < ApplicationRecord
+
+end

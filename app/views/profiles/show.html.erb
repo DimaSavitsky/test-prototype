@@ -1,5 +1,33 @@
 <h1>Your Profile</h1>
 
+<hr>
+
+<%- if current_user.user_internal_abilities.present? %>
+  <h3>Ability Scores</h3>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Ability</th>
+      <th>Description</th>
+      <th>Score</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <%- current_user.user_internal_abilities.includes(:internal_ability).each do |ability| %>
+      <tr>
+        <th><%= ability.internal_ability.name %></th>
+        <td><%= ability.internal_ability.description %></td>
+        <td><%= "#{ ability.level } / 7" %></td>
+      </tr>
+    <%- end %>
+    </tbody>
+  </table>
+<%- end %>
+
+<%= link_to 'Set Abilities', edit_profile_path %>
+
 <%- if @test_results.present? %>
   <hr>
   <h3>Test Results</h3>

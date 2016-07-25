@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721140623) do
+ActiveRecord::Schema.define(version: 20160725121513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abilities", id: false, force: :cascade do |t|
+    t.string  "onetsoc_code",       limit: 10,                         null: false
+    t.string  "element_id",         limit: 20,                         null: false
+    t.string  "scale_id",           limit: 3,                          null: false
+    t.decimal "data_value",                    precision: 5, scale: 2, null: false
+    t.decimal "n",                             precision: 4
+    t.decimal "standard_error",                precision: 5, scale: 2
+    t.decimal "lower_ci_bound",                precision: 5, scale: 2
+    t.decimal "upper_ci_bound",                precision: 5, scale: 2
+    t.string  "recommend_suppress", limit: 1
+    t.string  "not_relevant",       limit: 1
+    t.date    "date_updated",                                          null: false
+    t.string  "domain_source",      limit: 30,                         null: false
+  end
+
+  create_table "content_model_reference", primary_key: "element_id", id: :string, limit: 20, force: :cascade do |t|
+    t.string "element_name", limit: 150,  null: false
+    t.string "description",  limit: 1500, null: false
+  end
+
+  create_table "internal_abilities", force: :cascade do |t|
+    t.string "onet_content_element_id"
+    t.string "name",                    limit: 150
+    t.string "description",             limit: 1500
+  end
+
+  create_table "occupation_data", primary_key: "onetsoc_code", id: :string, limit: 10, force: :cascade do |t|
+    t.string "title",       limit: 150,  null: false
+    t.string "description", limit: 1000, null: false
+  end
 
   create_table "question_responses", force: :cascade do |t|
     t.integer "question_id"
@@ -25,6 +56,12 @@ ActiveRecord::Schema.define(version: 20160721140623) do
   create_table "questions", force: :cascade do |t|
     t.text    "text"
     t.integer "test_variable_id"
+  end
+
+  create_table "scales_reference", primary_key: "scale_id", id: :string, limit: 3, force: :cascade do |t|
+    t.string  "scale_name", limit: 50,               null: false
+    t.decimal "minimum",               precision: 1, null: false
+    t.decimal "maximum",               precision: 3, null: false
   end
 
   create_table "test_attempt_responses", force: :cascade do |t|
@@ -78,6 +115,14 @@ ActiveRecord::Schema.define(version: 20160721140623) do
     t.boolean  "randomized", default: false
   end
 
+  create_table "user_internal_abilities", force: :cascade do |t|
+    t.integer "internal_ability_id"
+    t.integer "user_id"
+    t.decimal "level",               precision: 3, scale: 2
+    t.index ["internal_ability_id"], name: "index_user_internal_abilities_on_internal_ability_id", using: :btree
+    t.index ["user_id"], name: "index_user_internal_abilities_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -95,4 +140,7 @@ ActiveRecord::Schema.define(version: 20160721140623) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "abilities", "content_model_reference", column: "element_id", primary_key: "element_id", name: "abilities_element_id_fkey"
+  add_foreign_key "abilities", "occupation_data", column: "onetsoc_code", primary_key: "onetsoc_code", name: "abilities_onetsoc_code_fkey"
+  add_foreign_key "abilities", "scales_reference", column: "scale_id", primary_key: "scale_id", name: "abilities_scale_id_fkey"
 end

@@ -9,7 +9,7 @@ class Test < ApplicationRecord
   has_many :questions, through: :test_variables
   has_many :test_results, through: :test_variables
 
-  has_many :test_attempts
+  has_many :test_attempts, dependent: :destroy
 
   accepts_nested_attributes_for :test_variables, reject_if: :all_blank, allow_destroy: true
 

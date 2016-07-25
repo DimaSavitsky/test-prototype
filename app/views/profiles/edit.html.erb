@@ -1,4 +1,6 @@
-<%= form_for current_user, url: profile_path do |f| %>
+<%= form_for @profile, url: profile_path do |f| %>
+
+  <%= resource_errors_top @profile %>
 
   <fieldset class="form-group">
     <h2>Abilities</h2>

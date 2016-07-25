@@ -25,4 +25,8 @@ module ApplicationHelper
     content_tag(:div, '', 'data-countdown' => datetime )
   end
 
+  def resource_errors_top(resource)
+    render partial: 'layouts/errors_top', locals: { resource: resource }
+  end
+
 end

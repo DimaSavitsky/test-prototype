@@ -1,17 +1,6 @@
 <%= form_for [:administration, test] do |f| %>
 
-
-  <% if test.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(test.errors.count, "error") %> prohibited this test from being saved:</h2>
-
-      <ul>
-      <% test.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= resource_errors_top test %>
 
   <fieldset class="form-group">
     <%= f.label :name %>

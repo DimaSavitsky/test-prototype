@@ -58,12 +58,6 @@ ActiveRecord::Schema.define(version: 20160725121513) do
     t.integer "test_variable_id"
   end
 
-  create_table "scales_reference", primary_key: "scale_id", id: :string, limit: 3, force: :cascade do |t|
-    t.string  "scale_name", limit: 50,               null: false
-    t.decimal "minimum",               precision: 1, null: false
-    t.decimal "maximum",               precision: 3, null: false
-  end
-
   create_table "test_attempt_responses", force: :cascade do |t|
     t.integer  "test_attempt_id"
     t.integer  "question_id"
@@ -142,5 +136,4 @@ ActiveRecord::Schema.define(version: 20160725121513) do
 
   add_foreign_key "abilities", "content_model_reference", column: "element_id", primary_key: "element_id", name: "abilities_element_id_fkey"
   add_foreign_key "abilities", "occupation_data", column: "onetsoc_code", primary_key: "onetsoc_code", name: "abilities_onetsoc_code_fkey"
-  add_foreign_key "abilities", "scales_reference", column: "scale_id", primary_key: "scale_id", name: "abilities_scale_id_fkey"
 end

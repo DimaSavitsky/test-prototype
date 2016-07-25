@@ -3,7 +3,7 @@ class AddInternalUserAbility < ActiveRecord::Migration[5.0]
   class ContentModelReference < ActiveRecord::Base
     self.table_name = :content_model_reference
 
-    scope :abilities, ->() { where(arel_table[:element_id].matches('1.A._____')) }
+    scope :abilities, ->() { where(arel_table[:element_id].matches('1.A.1._._')) }   # limited to the abilities in 'Cognitive Abilities' category
   end
 
   class InternalAbility < ActiveRecord::Base

@@ -2,7 +2,7 @@
   <td><%= f.number_field :range_start %></td>
   <td><%= f.number_field :range_stop %></td>
   <td><%= f.text_field :result_message %></td>
-  <td><%= f.number_field :attribute_score %></td>
+  <td><%= f.number_field :attribute_score, step: '0.01', min: '0', max: '7.0'  %></td>
 
   <td><%= link_to_remove_association "remove variant", f %></td>
 </tr>

@@ -1,13 +1,13 @@
 class TestResult < ApplicationRecord
 
   belongs_to :test_variable
+  belongs_to :internal_ability
 
   has_many :test_result_ranges, -> { order(:range_start) }
 
   accepts_nested_attributes_for :test_result_ranges, reject_if: :all_blank, allow_destroy: true
 
   validates :test_variable_id, uniqueness: true
-  validates :attribute_name, presence: true
 
   validate :check_result_ranges
 

@@ -31,7 +31,7 @@ module Administration
 
     def test_result_params
       params.require(:test_result).permit(
-        :attribute_name,
+        :internal_ability_id,
         test_result_ranges_attributes: [:id, :range_start, :range_stop, :attribute_score, :result_message, :_destroy]
       )
     end

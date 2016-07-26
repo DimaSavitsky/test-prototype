@@ -5,8 +5,8 @@
   <%= resource_errors_top @test_result %>
 
   <fieldset class="form-group">
-    <%= f.label :attribute_name %>
-    <%= f.text_field :attribute_name %>
+    <%= f.label :ability %>
+    <%= f.collection_select(:internal_ability_id, InternalAbility.all, :id, :name) %>
   </fieldset>
 
   <fieldset class="form-group">

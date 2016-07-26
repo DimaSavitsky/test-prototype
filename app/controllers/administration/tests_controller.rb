@@ -16,8 +16,6 @@ module Administration
     end
 
     def create
-      @test.assign_attributes(test_params)
-
       respond_to do |format|
         if @test.save
           format.html { redirect_to [:administration, @test], notice: 'Test was successfully created.' }

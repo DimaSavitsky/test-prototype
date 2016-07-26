@@ -8,6 +8,8 @@ class TestResultRange < ApplicationRecord
   validates :range_start, { presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0} }
   validates :range_stop, { presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0} }
 
+  validates :attribute_score, { presence: true, numericality: { greater_than_or_equal_to: 0.0, less_than_or_equal_to: 7.0 } }
+
   def value_range
     (range_start..range_stop)
   end

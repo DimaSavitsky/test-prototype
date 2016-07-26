@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725121513) do
+ActiveRecord::Schema.define(version: 20160726144613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20160725121513) do
 
   create_table "test_results", force: :cascade do |t|
     t.integer "test_variable_id"
-    t.string  "attribute_name"
+    t.integer "internal_ability_id"
     t.index ["test_variable_id"], name: "index_test_results_on_test_variable_id", using: :btree
   end
 

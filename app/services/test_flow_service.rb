@@ -58,6 +58,7 @@ class TestFlowService
 
   def finalize
     test_attempt.update(completed_at: timestamp)
+    update_internal_abilities
   end
 
   private
@@ -76,5 +77,14 @@ class TestFlowService
   end
 
   delegate :current_question_id, :ordered_question_ids, to: :test_attempt
+
+  def update_internal_abilities
+    test.test_variables.each do |variable|
+      internal_id = variable.test_result.internal_ability_id
+      ability = user.user_internal_abilities.find_or_initialize_by(internal_ability_id: internal_id)
+      ability_value = variable.test_result.range_for( test_attempt.score(variable.id) ).attribute_score
+      ability.update(level: ability_value)
+    end
+  end
 
 end

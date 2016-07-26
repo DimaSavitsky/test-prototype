@@ -13,7 +13,7 @@ module Onet
     class << self
 
       def search(search_criteria, get_top = 5)
-        base_occupations = self.joins(:occupation_abilities)
+        base_occupations = scoped_by_abilities(search_criteria)
         sum_diff_scores(base_occupations, search_criteria).order(match_score_alias).limit(get_top)
       end
 
@@ -22,6 +22,14 @@ module Onet
       end
 
       private
+
+      def scoped_by_abilities(criteria)
+        scope = self.joins(:occupation_abilities)
+        or_scopes = criteria.map do |criterium|
+          scope.where abilities: { element_id: criterium[:element_id] }
+        end
+        or_scopes.reduce(:or)
+      end
 
       def sum_diff_scores(scope, criteria)
         diff_sum = Arel::Nodes::Sum.new([diff_function(criteria)]).as(match_score_alias)

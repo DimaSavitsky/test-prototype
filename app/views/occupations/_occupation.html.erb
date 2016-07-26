@@ -14,12 +14,9 @@
     <th></th>
     <th>Required Score</th>
     <th>Your Score</th>
+    <th></th>
   </tr>
-  <%- occupation.occupation_abilities.includes(:internal_ability).each do |ability| %>
-    <tr data-toggle="tooltip" data-placement="top" title="<%= ability.internal_ability.description %>">
-      <th><%= ability.internal_ability.name %></th>
-      <td><%= ability.data_value %></td>
-      <td><%= current_user.user_internal_abilities.find_by(internal_ability_id: ability.internal_ability.id).try(:level) %></td>
-    </tr>
+  <%- occupation.occupation_abilities.order(data_value: :desc).includes(:internal_ability).each do |ability| %>
+    <%= occupation_ability_row(@user_abilities, ability) %>
   <%- end %>
 </table>

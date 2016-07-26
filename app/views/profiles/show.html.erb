@@ -5,7 +5,7 @@
 <%- if current_user.user_internal_abilities.present? %>
   <h3>Ability Scores</h3>
 
-  <table class="table">
+  <table class='table table-sm'>
     <thead>
     <tr>
       <th>Ability</th>
@@ -28,10 +28,14 @@
 
 <%= link_to 'Set Abilities', edit_profile_path %>
 
+<%- if current_user.user_internal_abilities.present? %>
+|<%= link_to 'Occupation Recommendations', profile_occupations_path %>
+<%- end %>
+
 <%- if @test_results.present? %>
   <hr>
   <h3>Test Results</h3>
-  <table class="table">
+  <table class='table table-sm'>
     <thead>
       <tr>
         <th>Test Name</th>

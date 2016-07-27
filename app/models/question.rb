@@ -9,6 +9,8 @@ class Question < ApplicationRecord
   validate :has_enough_responses
   validate :has_unique_responses
 
+  mount_uploader :image, QuestionImageUploader
+
   private
 
   def has_enough_responses

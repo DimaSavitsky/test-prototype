@@ -7,6 +7,20 @@
   </fieldset>
 
   <fieldset class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+
+    <br/>
+    <small class="text-muted"><%= question.image.extension_white_list.join(', ') %></small>
+
+    <%- if question.image.present? %>
+      <br/>
+      <small class="text-muted">Old image:</small>
+      <img src="<%= question.image_url %>">
+    <%- end %>
+  </fieldset>
+
+  <fieldset class="form-group">
     <%= f.label :text %>
     <%= f.text_area :text %>
   </fieldset>

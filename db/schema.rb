@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726144613) do
+ActiveRecord::Schema.define(version: 20160727104531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20160726144613) do
   create_table "questions", force: :cascade do |t|
     t.text    "text"
     t.integer "test_variable_id"
+    t.string  "image"
   end
 
   create_table "test_attempt_responses", force: :cascade do |t|
@@ -107,6 +108,7 @@ ActiveRecord::Schema.define(version: 20160726144613) do
     t.integer  "time_limit"
     t.boolean  "published",  default: false
     t.boolean  "randomized", default: false
+    t.string   "image"
   end
 
   create_table "user_internal_abilities", force: :cascade do |t|

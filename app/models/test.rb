@@ -2,6 +2,7 @@ class Test < ApplicationRecord
 
   validates :name, presence: true
   validates :test_variables, presence: true
+  validates :image, presence: true
 
   validate :publication_available
 
@@ -14,6 +15,8 @@ class Test < ApplicationRecord
   accepts_nested_attributes_for :test_variables, reject_if: :all_blank, allow_destroy: true
 
   scope :published, -> { where( published: true ) }
+
+  mount_uploader :image, TestImageUploader
 
   def ready_to_publish?
     test_variables.all?(&:results_complete? )

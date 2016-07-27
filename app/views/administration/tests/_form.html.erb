@@ -8,6 +8,20 @@
   </fieldset>
 
   <fieldset class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+
+    <br/>
+    <small class="text-muted"><%= test.image.extension_white_list.join(', ') %></small>
+
+    <%- if test.image.present? %>
+      <br/>
+      <small class="text-muted">Old image:</small>
+      <img src="<%= test.image_url %>">
+    <%- end %>
+  </fieldset>
+
+  <fieldset class="form-group">
     <%= f.label :time_limit %>
     <%= f.number_field :time_limit %>
     <br/>

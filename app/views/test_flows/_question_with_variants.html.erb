@@ -2,6 +2,12 @@
   <%= flow_service.current_question.text %>
 </h1>
 
+<%- if flow_service.current_question.image.present? %>
+  <div class="card-block">
+    <img src="<%= flow_service.current_question.image_url %>">
+  </div>
+<%- end %>
+
 <%- unless flow_service.on_question?(0) %>
   <div class = "btn-group btn-group-lg" >
     <%= link_to 'Back',

@@ -47,7 +47,7 @@ module Administration
 
     def test_params
       params.require(:test).permit(
-        :name, :time_limit, :randomized,
+        :name, :time_limit, :randomized, :image,
         test_variables_attributes: [:id, :name, :_destroy])
     end
 

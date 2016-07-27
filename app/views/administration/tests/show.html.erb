@@ -3,6 +3,13 @@
   <%= @test.name %>
 </p>
 
+<%- if @test.image.present? %>
+  <p>
+    <strong>Cover image:</strong>
+    <img src="<%= @test.image_url %>">
+  </p>
+<%- end %>
+
 <p>
   <strong>Variables:</strong>
   <%= test_variables_for(@test) %>
@@ -29,6 +36,7 @@
   <thead class="thead-default">
   <tr>
     <th>Text</th>
+    <th>Image</th>
     <th>Variable</th>
     <th>Number of Variants</th>
     <th colspan="2"></th>
@@ -36,9 +44,14 @@
   </thead>
 
   <tbody>
-  <% @test.questions.each do |question| %>
+  <% @test.questions.order(:id).each do |question| %>
     <tr>
       <td><%= question.text %></td>
+      <td>
+        <%- if question.image.present? %>
+          <img src="<%= question.image.thumb.url %>">
+        <%- end %>
+      </td>
       <td><%= question.test_variable.name %></td>
       <td><%= question.question_responses.count %></td>
       <td><%= link_to 'Edit', edit_administration_test_question_path(@test, question) %></td>

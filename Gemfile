@@ -22,6 +22,11 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
 
+# Use carrierwave for file upload to OS Swift storage
+gem 'carrierwave'
+gem 'fog-openstack'
+gem 'mini_magick'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 

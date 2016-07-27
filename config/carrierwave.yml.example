@@ -1,0 +1,12 @@
+credentials:
+  auth_url: ""
+  domainId: ""
+  domainName: ""
+  password: ""
+  project: ""
+  projectId: ""
+  region: ""
+  role: ""
+  userId: ""
+  username: ""
+folder: "developer's_name"

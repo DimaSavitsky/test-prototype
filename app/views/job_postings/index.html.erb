@@ -1,0 +1,41 @@
+<h1>Job Postings</h1>
+
+<table class="table table-striped">
+
+  <thead class="thead-default">
+  <tr>
+    <th>#</th>
+
+    <th>Title</th>
+    <th>Description</th>
+
+    <th>Created By</th>
+
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @job_postings.each do |posting| %>
+    <tr>
+      <th class="row"><%= posting.id %></th>
+
+      <td><%= posting.display_title %></td>
+      <td><%= posting.display_description %></td>
+
+      <td><%= posting.user.email %></td>
+
+      <td>
+        <%- if current_user.id == posting.user_id %>
+          <%= link_to 'Edit', edit_job_posting_path(posting) %>
+        <%- end %>
+      </td>
+      <td><%= link_to 'Destroy', job_posting_path(posting), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Posting', new_job_posting_path %>

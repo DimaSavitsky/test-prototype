@@ -1,0 +1,26 @@
+<%= hidden_field_tag :hiddenPostingId, job_posting.id %>
+<%= hidden_field_tag :hiddenPostingSpecificsUrl, specifics_job_postings_path %>
+
+<%= form_for job_posting do |f| %>
+
+  <%= resource_errors_top job_posting %>
+
+  <%- if job_posting.new_record? %>
+    <fieldset class="form-group">
+      <%= f.label :select_occupation %>
+      <div class="ui-widget">
+        <%= f.collection_select :onetsoc_code, Onet::Occupation.all, :onetsoc_code, :title, { prompt: true }, {id: 'combobox'} %>
+      </div>
+    </fieldset>
+  <%- end %>
+
+  <div id="posting-specifics">
+    <%- if job_posting.onetsoc_code.present? %>
+      <%= render(partial: 'job_specifics', locals: { occupation: job_posting.onet_occupation, job_posting: job_posting }) %>
+    <%- end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit nil, id: 'job-posting-submit', disabled: job_posting.onetsoc_code.blank? %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<p>
+  <strong>Title:</strong>
+  <%= @job_posting.display_title  %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @job_posting.display_description  %>
+</p>
+
+<p>
+  <strong>Abilities Required:</strong>
+  <table class="table table-sm">
+    <tr>
+      <th>Ability</th>
+      <th>Level</th>
+    </tr>
+    <%- @job_posting.onet_occupation.occupation_abilities.includes(:internal_ability).each_with_index do |ability, index| %>
+      <%- if @job_posting.abilities[index] %>
+        <tr data-toggle='tooltip' data-placement='right' title="<%= ability.internal_ability.description %>">
+          <th><%= ability.internal_ability.name %></th>
+          <td><%= ability.data_value %></td>
+        </tr>
+      <%- end %>
+    <%- end %>
+  </table>
+</p>
+
+
+<%= link_to 'Back', job_postings_path %>
+
+<%- if current_user.id == @job_posting.user_id %>
+  |
+  <%= link_to 'Edit', edit_job_posting_path(@job_posting) %>
+<%- end %>

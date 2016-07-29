@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727104531) do
+ActiveRecord::Schema.define(version: 20160728132628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 20160727104531) do
     t.string "onet_content_element_id"
     t.string "name",                    limit: 150
     t.string "description",             limit: 1500
+  end
+
+  create_table "job_postings", force: :cascade do |t|
+    t.string  "onetsoc_code"
+    t.integer "user_id"
+    t.boolean "abilities",    array: true
+    t.boolean "tasks",        array: true
+    t.string  "title"
+    t.text    "description"
+    t.index ["user_id"], name: "index_job_postings_on_user_id", using: :btree
   end
 
   create_table "occupation_data", primary_key: "onetsoc_code", id: :string, limit: 10, force: :cascade do |t|

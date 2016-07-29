@@ -30,6 +30,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :job_postings do
+    collection do
+      get :specifics
+    end
+  end
+
   root to: 'profiles#show'
 
 end

@@ -15,6 +15,7 @@
 //= require tether
 //= require bootstrap
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require cocoon
 //= require_tree .

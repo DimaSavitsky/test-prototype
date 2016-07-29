@@ -9,6 +9,18 @@
 </p>
 
 <p>
+  <strong>Tasks to Perform:</strong>
+  <ul>
+    <%- @job_posting.onet_occupation.task_statements.each_with_index do |task, index| %>
+      <%- if @job_posting.tasks[index] %>
+        <li><%= task.task %></li>
+      <%- end %>
+    <%- end %>
+
+  </ul>
+</p>
+
+<p>
   <strong>Abilities Required:</strong>
   <table class="table table-sm">
     <tr>

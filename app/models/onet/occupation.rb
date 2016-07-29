@@ -5,6 +5,7 @@ module Onet
     self.primary_key = :onetsoc_code
 
     has_many :occupation_abilities, inverse_of: :occupation, foreign_key: self.primary_key
+    has_many :task_statements, inverse_of: :occupation, foreign_key: self.primary_key
 
     def match_score
       self.send(self.class.match_score_alias)

@@ -67,8 +67,11 @@ class JobPostingsController < ApplicationController
   private
 
   def job_posting_params
-    params[:job_posting][:abilities] = params[:job_posting][:abilities].values
-    params.require(:job_posting).permit( :onetsoc_code, :title, :description, abilities: [] )
+    scoped_param = params[:job_posting]
+    scoped_param[:abilities] = scoped_param[:abilities].values
+    scoped_param[:tasks] = scoped_param[:tasks].values
+
+    params.require(:job_posting).permit( :onetsoc_code, :title, :description, abilities: [], tasks: [] )
   end
 
 end

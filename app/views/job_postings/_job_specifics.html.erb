@@ -14,6 +14,27 @@
     </fieldset>
 
     <fieldset class="form-group">
+      <%= form_builder.label :task_statements %>
+      <table class="table table-sm">
+        <tr>
+          <td></td>
+          <th>Required</th>
+        </tr>
+        <%- occupation.task_statements.each_with_index do |task, index| %>
+          <tr>
+            <th><%= task.task %></th>
+            <td>
+              <%= radio_button_tag "job_posting[tasks[#{index}]]", 'false', !job_posting.tasks[index] %>
+              <%= label "job_posting_tasks_#{index}_false", 'No' %>
+              <%= radio_button_tag "job_posting[tasks[#{index}]]", 'true', job_posting.tasks[index] %>
+              <%= label "job_posting_tasks_#{index}_true", 'Yes' %>
+            </td>
+          </tr>
+        <%- end %>
+      </table>
+    </fieldset>
+
+    <fieldset class="form-group">
       <%= form_builder.label :abilities %>
       <table class="table table-sm">
         <tr>
@@ -34,6 +55,7 @@
         <%- end %>
       </table>
     </fieldset>
+
   </div>
 
 <%- end %>

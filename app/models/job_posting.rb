@@ -21,7 +21,10 @@ class JobPosting < ApplicationRecord
   def init_arrays_for_occupation
     if self.onet_occupation
       unless self.abilities
-        self.abilities = Array.new(self.onet_occupation.occupation_abilities.length, true)
+        self.abilities = Array.new(self.onet_occupation.occupation_abilities.size, true)
+      end
+      unless self.tasks
+        self.tasks = Array.new(self.onet_occupation.task_statements.size, true)
       end
     end
   end

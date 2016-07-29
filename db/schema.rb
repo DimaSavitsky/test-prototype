@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728132628) do
+ActiveRecord::Schema.define(version: 20160729135227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(version: 20160728132628) do
     t.text    "text"
     t.integer "test_variable_id"
     t.string  "image"
+  end
+
+  create_table "task_statements", primary_key: "task_id", id: :decimal, precision: 8, force: :cascade do |t|
+    t.string  "onetsoc_code",          limit: 10,                 null: false
+    t.string  "task",                  limit: 1000,               null: false
+    t.string  "task_type",             limit: 12
+    t.decimal "incumbents_responding",              precision: 4
+    t.date    "date_updated",                                     null: false
+    t.string  "domain_source",         limit: 30,                 null: false
   end
 
   create_table "test_attempt_responses", force: :cascade do |t|
@@ -148,4 +157,5 @@ ActiveRecord::Schema.define(version: 20160728132628) do
 
   add_foreign_key "abilities", "content_model_reference", column: "element_id", primary_key: "element_id", name: "abilities_element_id_fkey"
   add_foreign_key "abilities", "occupation_data", column: "onetsoc_code", primary_key: "onetsoc_code", name: "abilities_onetsoc_code_fkey"
+  add_foreign_key "task_statements", "occupation_data", column: "onetsoc_code", primary_key: "onetsoc_code", name: "task_statements_onetsoc_code_fkey"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729135227) do
+ActiveRecord::Schema.define(version: 20160801115144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,27 @@ ActiveRecord::Schema.define(version: 20160729135227) do
     t.text    "text"
     t.integer "test_variable_id"
     t.string  "image"
+  end
+
+  create_table "task_categories", id: false, force: :cascade do |t|
+    t.string  "scale_id",             limit: 3,                  null: false
+    t.decimal "category",                          precision: 3, null: false
+    t.string  "category_description", limit: 1000,               null: false
+  end
+
+  create_table "task_ratings", id: false, force: :cascade do |t|
+    t.string  "onetsoc_code",       limit: 10,                         null: false
+    t.decimal "task_id",                       precision: 8,           null: false
+    t.string  "scale_id",           limit: 3,                          null: false
+    t.decimal "category",                      precision: 3
+    t.decimal "data_value",                    precision: 5, scale: 2, null: false
+    t.decimal "n",                             precision: 4
+    t.decimal "standard_error",                precision: 5, scale: 2
+    t.decimal "lower_ci_bound",                precision: 5, scale: 2
+    t.decimal "upper_ci_bound",                precision: 5, scale: 2
+    t.string  "recommend_suppress", limit: 1
+    t.date    "date_updated",                                          null: false
+    t.string  "domain_source",      limit: 30,                         null: false
   end
 
   create_table "task_statements", primary_key: "task_id", id: :decimal, precision: 8, force: :cascade do |t|
@@ -157,5 +178,6 @@ ActiveRecord::Schema.define(version: 20160729135227) do
 
   add_foreign_key "abilities", "content_model_reference", column: "element_id", primary_key: "element_id", name: "abilities_element_id_fkey"
   add_foreign_key "abilities", "occupation_data", column: "onetsoc_code", primary_key: "onetsoc_code", name: "abilities_onetsoc_code_fkey"
+  add_foreign_key "task_ratings", "occupation_data", column: "onetsoc_code", primary_key: "onetsoc_code", name: "task_ratings_onetsoc_code_fkey"
   add_foreign_key "task_statements", "occupation_data", column: "onetsoc_code", primary_key: "onetsoc_code", name: "task_statements_onetsoc_code_fkey"
 end

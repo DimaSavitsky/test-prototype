@@ -20,7 +20,11 @@
     <tr>
       <th class="row"><%= posting.id %></th>
 
-      <td><%= posting.display_title %></td>
+      <td>
+        <%= link_to job_posting_path(posting) do %>
+          <%= posting.display_title %>
+        <%- end %>
+      </td>
       <td><%= posting.display_description %></td>
 
       <td><%= posting.user.email %></td>

@@ -11,6 +11,14 @@ module Onet
       self.send(self.class.match_score_alias)
     end
 
+    def ordered_task_statements
+      task_statements.sort_by(&:frequency_category).reverse
+    end
+
+    def ordered_occupation_abilities
+      occupation_abilities.includes(:internal_ability).order(data_value: :desc)
+    end
+
     class << self
 
       def search(search_criteria, get_top = 5)

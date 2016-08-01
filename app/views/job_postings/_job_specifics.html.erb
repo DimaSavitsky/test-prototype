@@ -15,19 +15,27 @@
 
     <fieldset class="form-group">
       <%= form_builder.label :task_statements %>
+      <p class="small">
+        Task Frequency values are given in accordance to Occupation Expert reports.
+        If empty - there is no expert data available.
+      </p>
       <table class="table table-sm">
         <tr>
           <td></td>
+          <th>Frequency</th>
           <th>Required</th>
         </tr>
-        <%- occupation.task_statements.each_with_index do |task, index| %>
+        <%- occupation.ordered_task_statements.each_with_index do |task, index| %>
           <tr>
             <th><%= task.task %></th>
             <td>
+               <%= task.frequency_description %>
+            </td>
+            <td>
               <%= radio_button_tag "job_posting[tasks[#{index}]]", 'false', !job_posting.tasks[index] %>
-              <%= label "job_posting_tasks_#{index}_false", 'No' %>
+              <%= label "job_posting_tasks", "#{index}_false", 'No' %>
               <%= radio_button_tag "job_posting[tasks[#{index}]]", 'true', job_posting.tasks[index] %>
-              <%= label "job_posting_tasks_#{index}_true", 'Yes' %>
+              <%= label "job_posting_tasks", "#{index}_true", 'Yes' %>
             </td>
           </tr>
         <%- end %>
@@ -41,15 +49,15 @@
           <td colspan="2"></td>
           <th>Required</th>
         </tr>
-        <%- occupation.occupation_abilities.includes(:internal_ability).each_with_index do |ability, index| %>
+        <%- occupation.ordered_occupation_abilities.each_with_index do |ability, index| %>
           <tr data-toggle='tooltip' data-placement='right' title="<%= ability.internal_ability.description %>">
             <th><%= ability.internal_ability.name %></th>
             <td><%= ability.data_value %></td>
             <td>
               <%= radio_button_tag "job_posting[abilities[#{index}]]", 'false', !job_posting.abilities[index] %>
-              <%= label "job_posting_abilities_#{index}_false", 'No' %>
+              <%= label "job_posting_abilities", "#{index}_false", 'No' %>
               <%= radio_button_tag "job_posting[abilities[#{index}]]", 'true', job_posting.abilities[index] %>
-              <%= label "job_posting_abilities_#{index}_true", 'Yes' %>
+              <%= label "job_posting_abilities", "#{index}_true", 'Yes' %>
             </td>
           </tr>
         <%- end %>

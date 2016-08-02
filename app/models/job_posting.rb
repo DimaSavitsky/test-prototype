@@ -1,6 +1,7 @@
 class JobPosting < ApplicationRecord
   belongs_to :onet_occupation, class_name: 'Onet::Occupation', foreign_key: :onetsoc_code, primary_key: :onetsoc_code
   belongs_to :user
+  belongs_to :internal_industry
 
   validates :onet_occupation, presence: true
 

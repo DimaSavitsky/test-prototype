@@ -50,33 +50,39 @@ class JobPostingsController < ApplicationController
 
   def industry_occupations
     industry = InternalIndustry.find_by(id: params[:industry_id])
-    render partial: 'occupation_options', locals: { occupations: industry&.occupations || Onet::Occupation.all }
+    render partial: 'occupation_options', locals: {
+      industry: industry,
+      current_occupation: params[:current]
+    }
   end
 
   def specifics
     job_posting = JobPosting.find_by(id: params[:posting_id])
     occupation = Onet::Occupation.find_by(onetsoc_code: params[:onetsoc_code])
 
-    posting_to_render = if job_posting && job_posting.onetsoc_code == occupation.onetsoc_code
-                          job_posting
-                        else
-                          JobPosting.new(onet_occupation: occupation)
-                        end
+    if occupation
+      posting_to_render = if job_posting && job_posting.onetsoc_code == occupation.onetsoc_code
+                            job_posting
+                          else
+                            JobPosting.new(onet_occupation: occupation)
+                          end
 
-    render(partial: 'job_specifics', locals: {
-      occupation: occupation,
-      job_posting: posting_to_render
-    })
+      render(partial: 'job_specifics', locals: {
+        occupation: occupation,
+        job_posting: posting_to_render
+      })
+    end
   end
 
   private
 
   def job_posting_params
     scoped_param = params[:job_posting]
-    scoped_param[:abilities] = scoped_param[:abilities].values
-    scoped_param[:tasks] = scoped_param[:tasks].values
+    scoped_param[:abilities] = scoped_param[:abilities]&.values
+    scoped_param[:tasks] = scoped_param[:tasks]&.values
 
-    params.require(:job_posting).permit( :onetsoc_code, :title, :description, abilities: [], tasks: [] )
+    params.require(:job_posting).permit( :onetsoc_code, :title, :description, :internal_industry_id,
+                                         abilities: [], tasks: [] )
   end
 
 end

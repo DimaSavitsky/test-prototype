@@ -13,7 +13,7 @@
       <%= form_builder.text_area :description, placeholder: occupation.description  %>
     </fieldset>
 
-    <%- if occupation.task_statements.exists? %>
+    <%- if occupation.task_statements.present? %>
       <fieldset class="form-group">
       <%= form_builder.label :task_statements %>
       <p class="small">
@@ -44,28 +44,29 @@
     </fieldset>
     <%- end %>
 
-    <fieldset class="form-group">
-      <%= form_builder.label :abilities %>
-      <table class="table table-sm">
-        <tr>
-          <td colspan="2"></td>
-          <th>Required</th>
-        </tr>
-        <%- occupation.ordered_occupation_abilities.each_with_index do |ability, index| %>
-          <tr data-toggle='tooltip' data-placement='right' title="<%= ability.internal_ability.description %>">
-            <th><%= ability.internal_ability.name %></th>
-            <td><%= ability.data_value %></td>
-            <td>
-              <%= radio_button_tag "job_posting[abilities[#{index}]]", 'false', !job_posting.abilities[index] %>
-              <%= label "job_posting_abilities", "#{index}_false", 'No' %>
-              <%= radio_button_tag "job_posting[abilities[#{index}]]", 'true', job_posting.abilities[index] %>
-              <%= label "job_posting_abilities", "#{index}_true", 'Yes' %>
-            </td>
+    <%- if occupation.occupation_abilities.present? %>
+      <fieldset class="form-group">
+        <%= form_builder.label :abilities %>
+        <table class="table table-sm">
+          <tr>
+            <td colspan="2"></td>
+            <th>Required</th>
           </tr>
-        <%- end %>
-      </table>
-    </fieldset>
-
+          <%- occupation.ordered_occupation_abilities.each_with_index do |ability, index| %>
+            <tr data-toggle='tooltip' data-placement='right' title="<%= ability.internal_ability.description %>">
+              <th><%= ability.internal_ability.name %></th>
+              <td><%= ability.data_value %></td>
+              <td>
+                <%= radio_button_tag "job_posting[abilities[#{index}]]", 'false', !job_posting.abilities[index] %>
+                <%= label "job_posting_abilities", "#{index}_false", 'No' %>
+                <%= radio_button_tag "job_posting[abilities[#{index}]]", 'true', job_posting.abilities[index] %>
+                <%= label "job_posting_abilities", "#{index}_true", 'Yes' %>
+              </td>
+            </tr>
+          <%- end %>
+        </table>
+      </fieldset>
+    <%- end %>
   </div>
 
 <%- end %>

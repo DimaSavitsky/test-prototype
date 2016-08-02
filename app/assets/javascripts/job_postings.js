@@ -1,6 +1,7 @@
 var postingsFormReady = function() {
 
   var submitButton = $('#job-posting-submit');
+  var currentOccupationOpen = function() { return $('input[name=hiddenSpecificsOnetSocCode]').val(); };
   
   var optionChange = function(event){
     var newValue = $('#combobox').val();
@@ -8,9 +9,7 @@ var postingsFormReady = function() {
     var postingSpecificsUrl = $('input[name=hiddenPostingSpecificsUrl]').val();
     var specificsContainer = $('#posting-specifics');
 
-    var currentOccupationOpen = $('input[name=hiddenSpecificsOnetSocCode]').val();
-
-    if (currentOccupationOpen != newValue) {
+    if (currentOccupationOpen() != newValue) {
       submitButton.prop('disabled', true);
       specificsContainer.empty();
 
@@ -20,6 +19,8 @@ var postingsFormReady = function() {
           submitButton.prop('disabled', false);
         }
       );
+    } else {
+      submitButton.prop('disabled', false);
     }
   };
 
@@ -30,8 +31,16 @@ var postingsFormReady = function() {
         .insertAfter( this.element );
 
       this.element.hide();
+
+      this.element.on('loaded', $.proxy( this, "_updateValue" ));
+
       this._createAutocomplete();
       this._createShowAllButton();
+    },
+
+    _updateValue: function() {
+      var selected = this.element.find(':selected').text();
+      this.input.val(selected).data("ui-autocomplete")._trigger('change');
     },
 
     _createAutocomplete: function() {
@@ -55,6 +64,14 @@ var postingsFormReady = function() {
             "ui-tooltip": "ui-state-highlight"
           }
         });
+
+      this.input.autocomplete( "instance" )._renderItem = function( ul, item ) {
+        var element = $( "<li>" ).append( item.label );
+        if (item.percent) {
+          element.append( "<span class='pull-xs-right font-italic text-sm'>" + item.percent + "</span>" )
+        }
+        return element.appendTo( ul );
+      };
 
       this._on( this.input, {
         autocompleteselect: function( event, ui ) {
@@ -110,7 +127,8 @@ var postingsFormReady = function() {
           return {
             label: text,
             value: text,
-            option: this
+            option: this,
+            percent: $( this ).attr('percent')
           };
       }) );
     },
@@ -156,22 +174,23 @@ var postingsFormReady = function() {
     }
   });
 
+  $( "#combobox" ).combobox();
+
   $( "#industry" ).unbind().change(function(event) {
     var newIndustryId = event.target.value;
     var industryOccupationsUrl = $('input[name=hiddenIndustryOccupationsUrl]').val();
 
     submitButton.prop('disabled', true);
 
-    $.get( industryOccupationsUrl, { industry_id: newIndustryId}).done(
+    $.get( industryOccupationsUrl, { industry_id: newIndustryId, current: currentOccupationOpen()}).done(
       function( data ) {
-        $( "#combobox" ).html(data);
-        submitButton.prop('disabled', false);
+        $( "#combobox" ).html(data).trigger('loaded');
       }
     );
 
   });
 
-  $( "#combobox" ).combobox();
+
 
 };
 

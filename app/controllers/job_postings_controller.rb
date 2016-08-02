@@ -48,6 +48,11 @@ class JobPostingsController < ApplicationController
     end
   end
 
+  def industry_occupations
+    industry = InternalIndustry.find_by(id: params[:industry_id])
+    render partial: 'occupation_options', locals: { occupations: industry&.occupations || Onet::Occupation.all }
+  end
+
   def specifics
     job_posting = JobPosting.find_by(id: params[:posting_id])
     occupation = Onet::Occupation.find_by(onetsoc_code: params[:onetsoc_code])

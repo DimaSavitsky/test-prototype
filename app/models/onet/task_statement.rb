@@ -3,7 +3,7 @@ module Onet
 
     self.table_name = :task_statements
 
-    belongs_to :occupation, class_name: Onet::Occupation, foreign_key: :onetsoc_code
+    belongs_to :occupation, class_name: 'Onet::Occupation', foreign_key: :onetsoc_code
 
     has_many :task_ratings, inverse_of: :task_statement, foreign_key: :task_id
 

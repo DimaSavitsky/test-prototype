@@ -1,17 +1,26 @@
 <%= hidden_field_tag :hiddenPostingId, job_posting.id %>
 <%= hidden_field_tag :hiddenPostingSpecificsUrl, specifics_job_postings_path %>
+<%= hidden_field_tag :hiddenIndustryOccupationsUrl, industry_occupations_job_postings_path %>
 
 <%= form_for job_posting do |f| %>
 
   <%= resource_errors_top job_posting %>
 
   <%- if job_posting.new_record? %>
+
+    <fieldset class="form-group">
+      <%= f.label :select_industry %>
+      <br/>
+      <%= f.collection_select :internal_industry_id, InternalIndustry.all, :id, :industry_name, { prompt: 'All Industries' }, { id: 'industry'} %>
+    </fieldset>
+
     <fieldset class="form-group">
       <%= f.label :select_occupation %>
       <div class="ui-widget">
-        <%= f.collection_select :onetsoc_code, Onet::Occupation.all, :onetsoc_code, :title, { prompt: true }, {id: 'combobox'} %>
+        <%= f.collection_select :onetsoc_code, Onet::Occupation.all, :onetsoc_code, :title, { prompt: '' }, {id: 'combobox'} %>
       </div>
     </fieldset>
+
   <%- end %>
 
   <div id="posting-specifics">

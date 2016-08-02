@@ -7,6 +7,9 @@ module Onet
     has_many :occupation_abilities, inverse_of: :occupation, foreign_key: self.primary_key
     has_many :task_statements, inverse_of: :occupation, foreign_key: self.primary_key
 
+    has_many :occupation_industries, -> { actual }, inverse_of: :occupation, foreign_key: self.primary_key
+    has_many :internal_industries, through: :occupation_industries
+
     def match_score
       self.send(self.class.match_score_alias)
     end

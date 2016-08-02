@@ -13,7 +13,8 @@
       <%= form_builder.text_area :description, placeholder: occupation.description  %>
     </fieldset>
 
-    <fieldset class="form-group">
+    <%- if occupation.task_statements.exists? %>
+      <fieldset class="form-group">
       <%= form_builder.label :task_statements %>
       <p class="small">
         Task Frequency values are given in accordance to Occupation Expert reports.
@@ -41,6 +42,7 @@
         <%- end %>
       </table>
     </fieldset>
+    <%- end %>
 
     <fieldset class="form-group">
       <%= form_builder.label :abilities %>

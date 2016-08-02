@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 
   resources :job_postings do
     collection do
+      get :industry_occupations
       get :specifics
     end
   end

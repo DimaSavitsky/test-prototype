@@ -4,7 +4,7 @@ class JobPosting < ApplicationRecord
 
   validates :onet_occupation, presence: true
 
-  default_scope { includes(onet_occupation: :occupation_abilities) }
+  default_scope { includes(onet_occupation: :occupation_abilities).order(id: :desc) }
 
   after_initialize :init_arrays_for_occupation
 

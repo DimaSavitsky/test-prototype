@@ -105,6 +105,7 @@ var postingsFormReady = function() {
       var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
       response( this.element.children( "option" ).map(function() {
         var text = $( this ).text();
+        //var alt = $( this ).val('alt');
         if ( this.value && ( !request.term || matcher.test(text) ) )
           return {
             label: text,
@@ -153,6 +154,21 @@ var postingsFormReady = function() {
       this.wrapper.remove();
       this.element.show();
     }
+  });
+
+  $( "#industry" ).unbind().change(function(event) {
+    var newIndustryId = event.target.value;
+    var industryOccupationsUrl = $('input[name=hiddenIndustryOccupationsUrl]').val();
+
+    submitButton.prop('disabled', true);
+
+    $.get( industryOccupationsUrl, { industry_id: newIndustryId}).done(
+      function( data ) {
+        $( "#combobox" ).html(data);
+        submitButton.prop('disabled', false);
+      }
+    );
+
   });
 
   $( "#combobox" ).combobox();

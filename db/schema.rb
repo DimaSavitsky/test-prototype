@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801115144) do
+ActiveRecord::Schema.define(version: 20160801170703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,19 +41,34 @@ ActiveRecord::Schema.define(version: 20160801115144) do
     t.string "description",             limit: 1500
   end
 
+  create_table "internal_industries", force: :cascade do |t|
+    t.string "industry_name"
+    t.string "metadata_response"
+  end
+
   create_table "job_postings", force: :cascade do |t|
     t.string  "onetsoc_code"
     t.integer "user_id"
-    t.boolean "abilities",    array: true
-    t.boolean "tasks",        array: true
+    t.boolean "abilities",            array: true
+    t.boolean "tasks",                array: true
     t.string  "title"
     t.text    "description"
+    t.integer "internal_industry_id"
     t.index ["user_id"], name: "index_job_postings_on_user_id", using: :btree
   end
 
   create_table "occupation_data", primary_key: "onetsoc_code", id: :string, limit: 10, force: :cascade do |t|
     t.string "title",       limit: 150,  null: false
     t.string "description", limit: 1000, null: false
+  end
+
+  create_table "occupation_level_metadata", id: false, force: :cascade do |t|
+    t.string  "onetsoc_code", limit: 10,                          null: false
+    t.string  "item",         limit: 150,                         null: false
+    t.string  "response",     limit: 75
+    t.decimal "n",                        precision: 4
+    t.decimal "percent",                  precision: 4, scale: 1
+    t.date    "date_updated",                                     null: false
   end
 
   create_table "question_responses", force: :cascade do |t|
@@ -178,6 +193,7 @@ ActiveRecord::Schema.define(version: 20160801115144) do
 
   add_foreign_key "abilities", "content_model_reference", column: "element_id", primary_key: "element_id", name: "abilities_element_id_fkey"
   add_foreign_key "abilities", "occupation_data", column: "onetsoc_code", primary_key: "onetsoc_code", name: "abilities_onetsoc_code_fkey"
+  add_foreign_key "occupation_level_metadata", "occupation_data", column: "onetsoc_code", primary_key: "onetsoc_code", name: "occupation_level_metadata_onetsoc_code_fkey"
   add_foreign_key "task_ratings", "occupation_data", column: "onetsoc_code", primary_key: "onetsoc_code", name: "task_ratings_onetsoc_code_fkey"
   add_foreign_key "task_statements", "occupation_data", column: "onetsoc_code", primary_key: "onetsoc_code", name: "task_statements_onetsoc_code_fkey"
 end

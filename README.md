@@ -1,3 +1,18 @@
+# Local Installation
+
+Install Ruby 2.3.0
+
+- gem install bundler
+
+- bundle install
+
+- Create `config/database.yml` and `config/carrierwave.yml` from examples
+
+- rake db:create ; rake db:migrate
+
+- rails s
+
+
 # README
 
 For deployment: 

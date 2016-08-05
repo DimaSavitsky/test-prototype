@@ -1,0 +1,141 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ *= require_tree
+ *= require jquery-ui
+ */
+
+@import "bootstrap";
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic);
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+
+a{
+  color: #3aa5db;
+}
+
+body.login_page{
+  background: url(<%= asset_path 'login-page.jpg' %>) no-repeat center center, #51636c;
+  width: 100%;
+  height: 100%;
+  height: 100vh;
+  min-height: 700px;
+  position: relative;
+}
+
+.login-holder{
+  width: 400px;
+  background-color: #ffffff;
+  box-shadow: 0px 20px 70px 0.00px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  
+  .login-container{
+    padding: 0 40px;
+  }
+  
+  .login-logo{
+    margin: 65px 0;
+    text-align: center;
+  }
+  
+  input{
+    background-color: #edf2f4;
+    border: none;
+    border-radius: 4px;
+  
+    &[type="text"],&[type="email"],&[type="password"],&[type="submit"]{
+      margin-bottom: 20px;
+      padding: 18px 20px;
+      font: 400 18px / 24px 'Open Sans';
+      color: #999999;
+      height: 60px;
+      width: 100%;
+      border: 1px solid #dddddd;
+      
+      &:hover, &:focus{
+        background-color: #ffffff;
+      }
+    }
+  
+    &[type="checkbox"]{
+      width: 20px;
+      height: 20px;
+      background-color: #edf2f4;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    
+    &[type="submit"]{
+      background-color: #f6d53d;
+      box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.3);
+      font: 600 16px/20px 'Open Sans';
+      color: #444444;
+      text-transform: uppercase;
+      margin: 40px 0;
+      
+      &:hover, &:active, &:focus{
+        background-color: #dfbf29;
+      }
+    }
+  }
+    
+  label{
+    margin-bottom: 0;
+    vertical-align: middle;
+    font: 400 14px / 24px 'Open Sans';
+    cursor: pointer;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          
+  }
+  
+  .field-remeber{
+    
+  }
+  
+  .field-forget{
+    text-align: right;
+    color: #3aa5db;
+    font: 400 14px / 26px 'Open Sans';
+  }
+  
+  .login-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #edf2f4;
+  }
+
+  .sign-up-proposal {
+    text-align: center;
+    color: #999999;
+    font: 400 16px / 24px 'Open Sans';
+    margin: 40px 0;
+    
+    a{
+      font: 700 16px / 24px 'Open Sans';
+    }
+  }
+}

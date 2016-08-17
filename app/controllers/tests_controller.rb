@@ -4,5 +4,8 @@ class TestsController < ApplicationController
   def index
     @tests = @tests.published
   end
-
+  
+  def show 
+    
+  end
 end

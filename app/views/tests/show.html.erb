@@ -1,0 +1,30 @@
+<div class="modal-shadow"></div>
+<div class="modal">
+  <div class="test-img">
+    <img src="<%= asset_path 'test-main-image.jpg' %>" alt="Test main image">
+  </div>
+  
+  <div class="test-block">
+    <div class="utility clearfix">
+      <div class="questions-number">11 questions</div>
+    </div>
+    <h4>We will measure your project management and communication skills</h4>
+    <p>You will have <span>5 minutes</span> to pass the test.<br />
+Click <span>TRY DEMO</span> to practice the test (only 3 first questions).<br />
+If you are ready to pass the test click <span>START TEST</span>. You will not be able to re-take passed test during the next 6 month.</p>
+    
+    <%= link_to 'Start test', test_test_flow_path(@test) , class: 'btn-default btn-bottom-right'%>
+  </div>
+  
+  <div class="under-modal"><a href="#instructions" id="open-instructions">Instructions</a><a href="/tests">Cancel</a></div>
+</div>
+
+<div class="modal test-instructions" id="test-instructions">
+  <h3>Instructions</h3>
+
+  <p>Stick to timings &#8211; it&#8217;s very important. If you get stuck don&#8217;t panic, take a deep breath and move onto the next question. It&#8217;s important to remember that the easiest questions aren&#8217;t always at the start of the assessment. Psychometric test assessment are not typically negatively marked so you might want to consider taking a best guess and calmly progressing through the assessment. Many test publishers allow you to flag questions and go back and review them at the end of the assessment &#8211; if this functionality is available then it should be described in the instructions presented at the start of the assessment.</p>
+
+  <p>After clicking &#8220;start test&#8221; your assessment will begin. If you have read the instructions carefully then the format of the question shouldn&#8217;t come as a surprise. Spend a couple of seconds familiarising yourself with the context of the question.</p>
+
+  <p>Next read the first question carefully ensuring that you spend sufficient time making sure you understand what the question is asking.</p>
+</div>

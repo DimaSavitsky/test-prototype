@@ -1,4 +1,5 @@
-<%= link_to 'To Profile', profile_path %>
+<!-- 
+<%#= link_to 'To Profile', profile_path %>
 
 <table class="table">
   <thead>
@@ -8,13 +9,25 @@
     <th>Message</th>
   </thead>
   <tbody>
-    <%- @test_result.test.test_variables.each do |variable| %>
+    <%#- @test_result.test.test_variables.each do |variable| %>
       <tr>
-        <td><%= variable.name %></td>
-        <td><%= @test_result.score(variable.id) %></td>
-        <td><%= variable.max_value %></td>
-        <td><%= variable.test_result.range_for( @test_result.score(variable.id) ).result_message %></td>
+        <td><%#= variable.name %></td>
+        <td><%#= @test_result.score(variable.id) %></td>
+        <td><%#= variable.max_value %></td>
+        <td><%#= variable.test_result.range_for( @test_result.score(variable.id) ).result_message %></td>
       </tr>
-    <%- end %>
+    <%#- end %>
   </tbody>
 </table>
+-->
+<div class="modal-shadow"></div>
+<div class="modal results-modal">
+  <div class="modal-inner-scrollable">
+     <img src="<%= asset_path 'result-full.jpg' %>" alt="Results full">
+  </div>
+  <div class="modal-rbf-buttons">
+    <a class="btn-default btn-transparent" href="#">Download as pdf</a>
+    <a class="btn-default" href="/tests">Close</a>
+  </div>
+  <div class="under-modal left"><a href="#">Re-take the test</a></div>
+</div>

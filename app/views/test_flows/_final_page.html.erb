@@ -1,14 +1,26 @@
 <%- if flow_service.test_time_limit_reached? %>
   <h2>Time is up.</h2>
+<%= button_to 'View report', {action: :finalize}, class: 'btn-default btn-bottom-right' %>
 <%- else %>
-  <h2>That's all questions.</h2>
+  <div class="test-img">
+    <img src="<%= asset_path 'your-score-image.jpg' %>" alt="Your Score">
+  </div>
+  
+  <div class="test-block">
+    <h4>Thanks for taking the test!</h4>
+    <p>Your results have been saved. You can check your test report by following the link below or by logging into your account later (see "Test Reports" tab).</p>
+    <p>According to your results you appear to be the type of person who enjoys socializing with both large and smaller, more intimate groups of people. You don't mind being around big crowds, but that doesn't mean you'll want to crash every party you're invited to. Having an active social life and extending your network of friends is relatively important to you, but it isn't the most crucial thing.</p>
+    
+    <%= button_to 'View report', {action: :finalize}, class: 'btn-default btn-bottom-right' %>
+    <a href="/tests" class="btn-default btn-transparent btn-bottom-left">Close</a>
+  </div>
 <%- end %>
 
-  <div class="btn-group btn-group-lg">
-  <%- unless flow_service.test_time_limit_reached? %>
-    <%= link_to 'Start Over',
-                goto_question_test_test_flow_path(test, question_index: 0) ,
-                class: 'btn  btn-secondary' %>
-  <%- end %>
-  <%= button_to 'Finish the test', {action: :finalize}, form_class:  'btn-group btn-group-lg', class: 'btn btn-success' %>
+<div class="under-modal left">
+<%- unless flow_service.test_time_limit_reached? %>
+  <%= link_to 'Re-take the test',
+              goto_question_test_test_flow_path(test, question_index: 0) %>
+<%- end %>
 </div>
+
+

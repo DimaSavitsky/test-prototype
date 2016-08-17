@@ -1,21 +1,19 @@
-<%- @tests.in_groups_of(3).each do |tests_row| %>
-  <div class="row">
-
-    <%- tests_row.compact.each do |test| %>
-      <div class="col-sm-4">
-        <div class="card card-block text-xs-center">
-          <div class="card-block">
-            <h4 class="card-title"><%= test.name %></h4>
-          </div>
+<div class="row">
+   <%- @tests.each do |test| %>
+    <div class="col-md-3 test-col">
+      <div>
+        <%= link_to test_path(test), class: 'test-image-wrapper overlay-fade-in' do %>
 
           <img src="<%= test.image_url %>" alt="Card image">
 
-          <div class="card-block">
-            <%= link_to 'Take a test', test_test_flow_path(test) , class: 'btn btn-primary'%>
+          <div class="image-overlay-content">
+            <h3>Open test</h3>
           </div>
-        </div>
-      </div>
-    <% end %>
 
-  </div>
-<%- end %>
+        <% end %>
+        <h4><%= test.name %></h4>
+        <p>11 questions</p>
+      </div>
+    </div>
+  <%- end %>
+</div>

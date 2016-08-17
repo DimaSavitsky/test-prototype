@@ -1,8 +1,8 @@
 <div class="login-logo"><img src="<%= asset_path 'login-logo.png' %>" alt="Career Navigator"></div>
 
 <div class="login-container">
-  
-    <%= flash_messages %>
+
+<%= flash_messages %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.email_field :email, autofocus: true, placeholder: "Email", :required => true  %>
@@ -39,6 +39,6 @@
 
 <div class="login-container">
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <p class="sign-up-proposal">Don't have an account? <%= link_to "Sign up", new_registration_path(resource_name) %></p>
+    <p class="form-bottom-link">Don't have an account? <%= link_to "Sign up", new_registration_path(resource_name) %></p>
   <% end -%> 
 </div>

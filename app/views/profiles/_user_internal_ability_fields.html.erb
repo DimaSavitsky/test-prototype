@@ -1,9 +1,8 @@
-<tr class="nested-fields">
-  <td><%#= f.number_field :internal_ability_id %></td>
+<div class="row edit-abilities-row nested-fields">
+  <div class="col-md-9 ability-name"><%= f.collection_select(:internal_ability_id, InternalAbility.all, :id, :name) %></div>
 
-  <td><%= f.collection_select(:internal_ability_id, InternalAbility.all, :id, :name) %></td>
-
-  <td><%= f.number_field :level, step: '0.01', min: '0', max: '7.0' %></td>
-
-  <td><%= link_to_remove_association "remove ability", f %></td>
-</tr>
+  <div class="col-md-2 ability-level"><%= f.number_field :level, step: '0.01', min: '0', max: '7.0' %></div>
+  
+  <%= link_to_remove_association " ", f, class: 'col-md-1 ability-remove' %>
+  
+</div>

@@ -1,31 +1,49 @@
+<!--
 <div class="card card-block text-xs-center">
 
     <div class="btn-group" role="group" aria-label="First group">
-      <%- @flow_service.ordered_question_ids.each_with_index do |question_id, index| %>
+      <%#- @flow_service.ordered_question_ids.each_with_index do |question_id, index| %>
 
-        <%- if @flow_service.on_question?(index) %>
-          <button class="btn"><%= index + 1 %></button>
-        <%- else %>
-          <%= link_to (index + 1), goto_question_test_test_flow_path(@test, question_index: index) ,
+        <%#- if @flow_service.on_question?(index) %>
+          <button class="btn"><%#= index + 1 %></button>
+        <%#- else %>
+          <%#= link_to (index + 1), goto_question_test_test_flow_path(@test, question_index: index) ,
                       class: "btn btn-secondary #{'btn-success' if question_id.in?(@flow_service.answered_question_ids)}" %>
-        <%- end %>
+        <%#- end %>
 
-      <%- end %>
+      <%#- end %>
     </div>
 
-  <%- if @flow_service.time_limit %>
-    <%= countdown_to(@flow_service.time_limit) %>
-  <%- end %>
+  <%#- if @flow_service.time_limit %>
+    <%#= countdown_to(@flow_service.time_limit) %>
+  <%#- end %>
 
-  <%- if @flow_service.current_question_id %>
-    <%= render 'question_with_variants', { test: @test, flow_service: @flow_service } %>
-  <%- else %>
-    <%= render 'final_page', { test: @test, flow_service: @flow_service } %>
-  <%- end %>
+  <%#- if @flow_service.current_question_id %>
+    <%#= render 'question_with_variants', { test: @test, flow_service: @flow_service } %>
+  <%#- else %>
+    <%#= render 'final_page', { test: @test, flow_service: @flow_service } %>
+  <%#- end %>
 
 </div>
+-->
 
+<div class="modal-shadow"></div>
 
+<div class="modal">
+    <%- if @flow_service.current_question_id %>
+      <%= render 'question_with_variants', { test: @test, flow_service: @flow_service } %>
+      <div class="under-modal"><a href="#instructions" id="open-instructions">Instructions</a><a href="/tests">Cancel</a></div>
+    <%- else %>
+      <%= render 'final_page', { test: @test, flow_service: @flow_service } %>
+    <%- end %>
+</div>
 
+<div class="modal test-instructions" id="test-instructions">
+  <h3>Instructions</h3>
 
+  <p>Stick to timings &#8211; it&#8217;s very important. If you get stuck don&#8217;t panic, take a deep breath and move onto the next question. It&#8217;s important to remember that the easiest questions aren&#8217;t always at the start of the assessment. Psychometric test assessment are not typically negatively marked so you might want to consider taking a best guess and calmly progressing through the assessment. Many test publishers allow you to flag questions and go back and review them at the end of the assessment &#8211; if this functionality is available then it should be described in the instructions presented at the start of the assessment.</p>
 
+  <p>After clicking &#8220;start test&#8221; your assessment will begin. If you have read the instructions carefully then the format of the question shouldn&#8217;t come as a surprise. Spend a couple of seconds familiarising yourself with the context of the question.</p>
+
+  <p>Next read the first question carefully ensuring that you spend sufficient time making sure you understand what the question is asking.</p>
+</div>

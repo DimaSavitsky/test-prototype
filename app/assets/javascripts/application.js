@@ -31,8 +31,6 @@ ready = function() {
       $this.html(event.strftime('%M:%S'));
     });
   });
-
-  $('[data-toggle="tooltip"]').tooltip();
   
   $('.scroll-pane').jScrollPane();
 
@@ -47,6 +45,28 @@ ready = function() {
     $('#test-instructions').hide(500);
     $('.under-modal').html( '<a href="#instructions" id="open-instructions">Close Instructions</a><a href="/tests">Cancel</a>' );
   });
+  
+  
+  window_width = $(window).width();
+  window_height = $(window).height();
+  reinitTable();
+  
+  $(window).on('resize',function(){
+    window_width = $(window).width();
+    window_height = $(window).height();
+    reinitTable();
+  });
+  
+  function reinitTable(){
+    tableFix = (window_width - 950) / 2;
+    $('.table-padding').css('width',tableFix);
+    $('.ui-tooltip').css('left',tableFix,'important');
+  };  
+
+  $('[data-toggle="tooltip"]').tooltip({
+    position: { my: 'left bottom-20', at: 'left top'}
+  });
+  
 };
 
 $(document).ready(ready);

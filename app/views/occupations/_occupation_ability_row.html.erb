@@ -1,9 +1,8 @@
-<tr data-toggle='tooltip' data-placement='right'
-    title="<%= ability.internal_ability.description %>"
-    class="<%= row_class %>" >
-
-  <th><%= ability.internal_ability.name %></th>
+<tr class="<%= row_class %>" >
+  <td></td>
+  <th data-toggle='tooltip' data-placement='top' title="<%= ability.internal_ability.description %>"><%= ability.internal_ability.name %></th>
   <td><%= ability.data_value %></td>
   <td><%= user_ability %></td>
   <td><%= ability_diff %></td>
+  <td></td>
 </tr>

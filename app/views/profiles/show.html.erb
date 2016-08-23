@@ -23,30 +23,27 @@
   </div>
 </div>
 
-<h2>Test Results</h2>
-
 <%- if @test_results.present? %>
-  <hr>
-  <h3>Test Results</h3>
-  <table class='table table-sm'>
-    <thead>
-      <tr>
-        <th>Test Name</th>
-        <th>Started At</th>
-        <th>Completed At</th>
-        <th></th>
-      </tr>
-    </thead>
+ 
+  <h2>Test Results</h2>
 
-    <tbody>
-      <%- @test_results.each do |result| %>
-        <tr>
-          <th><%= result.test.name %></th>
-          <td><%= result.started_at %></td>
-          <td><%= result.completed_at %></td>
-          <td><%= link_to 'View', profile_test_result_path(id: result.id) %></td>
-        </tr>
-      <%- end %>
-    </tbody>
-  </table>
+  <div class="row">
+    <%- @test_results.each do |result| %>
+      <div class="col-md-3 test-col results">
+        <div>
+          <%= link_to profile_test_result_path(id: result.id), class: 'test-image-wrapper overlay-fade-in' do %>
+
+            <img src="<%= result.test.image_url %>" alt="Card image">
+
+            <div class="image-overlay-content">
+              <h3>View Results</h3>
+            </div>
+
+          <% end %>
+          <h4><%= result.test.name %></h4>
+          <p><%= result.completed_at %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <%- end %>

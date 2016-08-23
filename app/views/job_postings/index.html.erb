@@ -1,47 +1,26 @@
-<h1>Job Postings</h1>
+<h2>Job Postings</h2>
 
-<%= link_to 'New Posting', new_job_posting_path %>
+<%= link_to 'Add New Job Posting', new_job_posting_path, class: 'btn-default btn-add-job-posting' %>
 
 <br>
 
-<table class="table table-striped">
-
-  <thead class="thead-default">
-  <tr>
-    <th>#</th>
-
-    <th>Title</th>
-    <th>Description</th>
-
-    <th>Created By</th>
-
-    <th colspan="2"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @job_postings.each do |posting| %>
-    <tr>
-      <th class="row"><%= posting.id %></th>
-
-      <td>
-        <%= link_to job_posting_path(posting) do %>
+<% @job_postings.each do |posting| %>
+  <div class="row job-posting">
+    <%= link_to job_posting_path(posting), class: 'col-md-11 job-posting-link' do %>
+      <h3>
           <%= posting.display_title %>
-        <%- end %>
-      </td>
-      <td><%= posting.display_description %></td>
-
-      <td><%= posting.user.email %></td>
-
-      <td>
-        <%- if current_user.id == posting.user_id %>
-          <%= link_to 'Edit', edit_job_posting_path(posting) %>
-        <%- end %>
-      </td>
-      <td><%= link_to 'Destroy', job_posting_path(posting), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+      </h3>
+      <p class="descript"><%= posting.display_description %></p>
+    <%- end %>
+    <!-- 
+      <div class="col-md-1">
+        <%#- if current_user.id == posting.user_id %>
+          <%#= link_to 'Edit', edit_job_posting_path(posting) %>
+        <%#- end %>
+      </div>
+    -->
+    <%= link_to ' ', job_posting_path(posting), method: :delete, data: { confirm: 'Are you sure?' }, class: 'col-md-1 job-posting-remove' %>
+  </div>
+<% end %>
 
 

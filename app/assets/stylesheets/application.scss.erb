@@ -18,7 +18,7 @@
 
 @import "bootstrap";
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic,700italic);
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700);
 
@@ -356,7 +356,7 @@ h2{
       background-color: #edf2f4;
       border: none;
       border-radius: 4px;
-      padding: 0 20px;
+      padding: 0 5px 0 20px;
     }
 
     .ability-name{
@@ -579,6 +579,9 @@ h2{
     font: 400 14px / 24px 'Open Sans';
     margin-bottom: 0;
   }
+  &.results:nth-child(-n+4){
+    margin-top: 90px;
+  }
 }
 
 .test-image-wrapper {
@@ -677,3 +680,260 @@ h2{
     -webkit-filter: grayscale(100%);
   }
 } 
+
+.add-ability{
+  margin-bottom: 195px;
+  margin-top: 30px;
+}
+
+.footer{
+  background-color: #ffffff;
+  box-shadow: 0px 0px 20px 0.00px rgba(0, 0, 0, 0.15);
+  height: 120px;
+  width: 100%;
+  font-size: 0;
+  padding: 30px 0;
+  margin-top: 75px;
+  position: fixed;
+  bottom: 0;
+  
+  .btn-default{
+    vertical-align: middle;
+  }
+  
+  .link{
+    display: inline-block;
+    color: #3aa5db;
+    font: 600 16px / 60px 'Open Sans';
+    text-decoration: underline;
+    vertical-align: middle;
+    margin-left: 20px;
+    padding: 0 10px;
+  }
+}
+
+.occupation-heading{
+  padding: 150px 0 70px;
+  &>*{
+    min-height: 150px;
+  }
+  .occupation-description{
+    h2{
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    p{
+      color: #999999;
+      font: 400 14px / 18px 'Open Sans';
+    }
+  }
+  .occupation-score{
+    .score-holder{
+      float: right;
+      width: 186px;
+      height: 186px;
+      text-align: center;
+      background: url(<%= asset_path 'score-round-bg.png' %>) no-repeat center center;
+      p{
+        color: #999999;
+        margin: 0;
+        font: 400 14px / 18px 'Open Sans';
+        &.score-colored{
+          font: 700 48px / 48px 'Open Sans';
+          margin-top: 50px;
+          color: #3a9ccf;
+          background: -webkit-linear-gradient(right, #db5f60, #3a9ccf);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+.table-occupations{
+  background: #ffffff;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  tr{
+    background: #ffffff;
+    &:first-child{
+      background-color: #b5babc;
+      &:hover{
+        background-color: #b5babc;
+        th{
+          background-color: #b5babc;
+        }
+      }
+      th{
+        background-color: #b5babc;
+        color: #ffffff;
+        font: 700 12px / 22px 'Open Sans';
+        padding: 29px 30px;
+        text-transform: uppercase;
+        &:nth-child(2){
+          padding-left: 0;
+        }
+      }
+    }
+    
+    th{
+      color: #999999;
+      font: 600 16px / 22px 'Open Sans';
+      padding: 19px 30px;
+      padding-left: 0;
+      border: none;
+      background: #ffffff;
+    }
+    
+    td{
+      color: #444444;
+      font: 700 16px / 22px 'Open Sans';
+      padding: 19px 30px;
+      border: none;
+      background: #ffffff;
+    }
+    
+    &.table-danger{
+      background-color: #df5d5d;
+      th, td{
+        color: #ffffff;
+        background-color: #df5d5d;
+      }
+    }
+    
+    &.table-success{
+      background-color: #faf5d5;
+      th, td{
+        background-color: #faf5d5;
+      }
+      th{
+        color: #999999;
+      }
+      td{
+        color: #dacd3d;
+      }
+    }
+    &:hover{
+      background-color: #edf2f4;
+      td, th{
+        background-color: #edf2f4;
+      }
+    }
+  }
+}
+
+.row.job-posting{
+  margin: 0;
+  background: #ffffff;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+  
+  & > *{
+    min-height: 100px;
+  
+    &:first-child{
+      padding: 30px;
+      
+      &:after{
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+  
+  a.job-posting-link{
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transition: all .3s ease;
+    &:hover{
+      text-decoration: none;
+      background: #eeeeee;
+    }
+  }
+  .job-posting-remove {
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transition: all .3s ease;
+    background: url(<%= asset_path 'remove-ability-icon.png' %>) no-repeat center center, #ffffff;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+  }
+  .job-posting-remove:hover {
+    background-color: rgba(223, 93, 93, 0.05);
+  }
+  
+  h3{
+    color: #444444;
+    font: 700 20px / 24px 'Open Sans';
+  }
+  
+  p.descript{
+    color: #999999;
+    font: 400 18px / 24px 'Open Sans';
+  }
+}
+
+.btn-add-job-posting{
+  margin-bottom: 30px;
+}
+
+.inside-job-posting{
+  h2{
+    margin-bottom: 0px;
+  }
+  h3{
+    color: #444444;
+    font: 700 20px 'Open Sans';
+    margin-top: 70px;
+    margin-bottom: 30px;
+  }
+  p{
+    color: #999999;
+    font: 400 16px / 20px 'Open Sans';
+  }
+  ul{
+    padding-left: 0;
+    li{
+      background: url(<%= asset_path 'list-item-circle.png' %>) no-repeat 0px 8px;
+      padding-left: 30px;
+      color: #999999;
+      font: 400 16px / 24px 'Open Sans';
+      list-style-type: none;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.table-abilities{
+  margin-bottom: 150px;
+  tr th{
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+.table-abilities tr:first-child th{
+  color: #999999;
+  font: 600 16px / 22px 'Open Sans';
+  padding: 19px 30px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  text-transform: none;
+}
+
+.table-abilities tr:first-child:hover{
+  background-color: #edf2f4;
+  th{
+    background-color: #edf2f4;
+  }
+}

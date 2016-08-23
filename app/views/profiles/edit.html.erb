@@ -9,13 +9,20 @@
         <%= render 'user_internal_ability_fields', f: ability %>
       <%- end %>
       <%= link_to_add_association f, :user_internal_abilities,
-                                  class: 'btn-default btn-transparent', 
+                                  class: 'btn-default btn-transparent add-ability', 
                                   'data-association-insertion-node' => '.abilities',
                                   'data-association-insertion-method' => 'append' do %>
         Add New Ability
       <%- end %>
   </fieldset>
-
-  <%= f.submit 'Save', class: 'btn-default' %>
-  <%= link_to 'Cancel', profile_path %>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="container">
+   <div class="row">
+     <div class="col-md-12">
+        <%= f.submit 'Save', class: 'btn-default' %>
+        <%= link_to 'Cancel', profile_path, class: 'link' %>
+     </div>
 <%- end %>

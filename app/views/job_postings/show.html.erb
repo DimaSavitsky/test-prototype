@@ -1,60 +1,69 @@
-<p>
-  <strong>Title:</strong>
-  <%= @job_posting.display_title  %>
-</p>
+<div class="inside-job-posting">
+  <h2><%= @job_posting.display_title  %></h2>
 
-<p>
-  <strong>Description:</strong>
-  <%= @job_posting.display_description  %>
-</p>
-
-<%- if @job_posting.internal_industry.present? %>
   <p>
-    <strong>Industry:</strong>
-    <%= @job_posting.internal_industry.industry_name  %>
+    <%= @job_posting.display_description  %>
   </p>
-<%- end %>
 
-<%- if @job_posting.tasks.present? %>
-  <p>
-    <strong>Tasks to Perform:</strong>
+  <!--
+  <%#- if @job_posting.internal_industry.present? %>
+    <p>
+      <strong>Industry:</strong>
+      <%#= @job_posting.internal_industry.industry_name  %>
+    </p>
+  <%#- end %>
+  -->
+
+  <%- if @job_posting.tasks.present? %>
+    <h3>Tasks to Perform:</h3>
     <ul>
       <%- category_label = nil%>
       <%- @job_posting.onet_occupation.ordered_task_statements.each_with_index do |task, index| %>
         <%- if @job_posting.tasks[index] %>
-          <%= content_tag('h4', category_label = task.frequency_description) unless task.frequency_description == category_label %>
           <li><%= task.task %></li>
         <%- end %>
       <%- end %>
 
     </ul>
-  </p>
-<%- end %>
+  <%- end %>
 
-<%- if @job_posting.abilities.present? %>
-  <p>
-    <strong>Abilities Required:</strong>
-    <table class="table table-sm">
-      <tr>
-        <th>Ability</th>
-        <th>Level</th>
-      </tr>
+  <%- if @job_posting.abilities.present? %>
+    <h3>Abilities Required:</h3>
+        </div>
+      </div>
+    </div>
+</div>
+
+    <div class="full-width">
+      <div class="container-fluid">
+        <div class="row">
+    <table class="table table-hover table-occupations table-abilities" width="100%">
       <%- @job_posting.onet_occupation.ordered_occupation_abilities.each_with_index do |ability, index| %>
         <%- if @job_posting.abilities[index] %>
-          <tr data-toggle='tooltip' data-placement='right' title="<%= ability.internal_ability.description %>">
-            <th><%= ability.internal_ability.name %></th>
+          <tr>
+            <td class="table-padding"></td>
+            <th data-toggle='tooltip' data-placement='right' title="<%= ability.internal_ability.description %>"><%= ability.internal_ability.name %></th>
             <td><%= ability.data_value %></td>
+            <td class="table-padding"></td>
           </tr>
         <%- end %>
       <%- end %>
     </table>
-  </p>
-<%- end %>
+        </div>
+      </div>
+    </div>
+  <%- end %>
 
 
-<%= link_to 'Back', job_postings_path %>
+<div class="footer">
+  <div class="container">
+   <div class="row">
+     <div class="col-md-12">
+        <%= link_to '← Back', job_postings_path, class: 'link', style: 'margin-left: 0; padding: 0;' %>
 
-<%- if current_user.id == @job_posting.user_id %>
-  |
-  <%= link_to 'Edit', edit_job_posting_path(@job_posting) %>
-<%- end %>
+        <%- if current_user.id == @job_posting.user_id %>
+          |
+          <%= link_to 'Edit', edit_job_posting_path(@job_posting) %>
+        <%- end %>
+     </div>
+</div>

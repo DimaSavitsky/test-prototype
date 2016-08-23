@@ -56,6 +56,10 @@ class TestFlowService
     end
   end
 
+  def number_of_questions
+    ordered_question_ids.length
+  end
+
   def finalize
     test_attempt.update(completed_at: timestamp)
     update_internal_abilities

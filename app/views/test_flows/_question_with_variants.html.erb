@@ -13,10 +13,10 @@
                     class: 'back-link'%>
       </div>
     <% end %>
-    <div class="questions-number">Question 2 of 5</div>
+    <div class="questions-number">Question <%= flow_service.next_question_index %> of <%= flow_service.number_of_questions %></div>
     <div class="countdown">
-      <%- if @flow_service.time_limit %>
-        <%= countdown_to(@flow_service.time_limit) %>
+      <%- if flow_service.time_limit %>
+        <%= countdown_to(flow_service.time_limit) %>
       <%- end %>
     </div>
   </div>

@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   before_filter :set_profile_record, only: [:edit, :update]
 
   def show
-    @test_results = current_user.test_attempts.completed.includes(:test)
+    @test_results = current_user.test_attempts.completed.order(completed_at: :desc).limit(8).includes(:test)
   end
 
   def edit

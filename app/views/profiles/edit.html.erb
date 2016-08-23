@@ -5,9 +5,11 @@
   <fieldset class="form-group">
     <h2>Edit Abilities</h2>
 
-      <%= f.fields_for :user_internal_abilities do |ability| %>
-        <%= render 'user_internal_ability_fields', f: ability %>
-      <%- end %>
+      <div class="abilities">
+        <%= f.fields_for :user_internal_abilities do |ability| %>
+          <%= render 'user_internal_ability_fields', f: ability %>
+        <%- end %>
+      </div>
       <%= link_to_add_association f, :user_internal_abilities,
                                   class: 'btn-default btn-transparent add-ability', 
                                   'data-association-insertion-node' => '.abilities',

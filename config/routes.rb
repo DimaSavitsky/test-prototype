@@ -19,6 +19,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :landing_page, only: [:show]
+
+
   resource :profile, only: [:show, :edit, :update] do
     resources :test_results, only: [:show]
     resources :occupations, only: [:index]

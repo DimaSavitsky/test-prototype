@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   authorize_resource class: false
 
-  before_filter :set_profile_record, only: [:edit, :update]
+  before_filter :set_profile_record, only: [:edit, :update, :static_1, :static_2, :static_3]
 
   def show
     @test_results = current_user.test_attempts.completed.order(completed_at: :desc).limit(8).includes(:test)
@@ -16,6 +16,15 @@ class ProfilesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def static_1
+  end
+
+  def static_2
+  end
+
+  def static_3
   end
 
   private

@@ -15,5 +15,36 @@
         <p><%= test.questions.length %> questions</p>
       </div>
     </div>
+
   <%- end %>
+
+  <%- {
+      "Project management" => "static/step-1",
+      "Communication" => "static/step-1",
+      "Math" => "static/step-1",
+      "Chemistry" => "static/step-1",
+      "Selective attention" => "static/step-1",
+      "Problem sensitivity" => "static/step-1",
+      "Visualisation" => "static/step-1",
+      "Oral expression" => "static/step-1",
+      "Originality" => "static/step-1",
+      "Memorization" => "static/step-1"
+      }.each do |name, image| %>
+    <div class="col-md-3 test-col">
+      <div>
+        <%= link_to '#', class: 'test-image-wrapper overlay-fade-in' do %>
+
+            <%= image_tag image, alt: 'Card image', style: "width: 215px; height: 215px;"%>
+
+            <div class="image-overlay-content">
+              <h3>Open test</h3>
+            </div>
+
+        <% end %>
+        <h4><%= name %></h4>
+        <p><%= rand(10) + 4 %> questions</p>
+      </div>
+    </div>
+  <%- end %>
+
 </div>

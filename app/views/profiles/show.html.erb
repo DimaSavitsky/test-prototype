@@ -1,5 +1,6 @@
+<h2>Ability Scores</h2>
+
 <%- if current_user.user_internal_abilities.present? %>
-  <h2>Ability Scores</h2>
 
   <%- current_user.user_internal_abilities.includes(:internal_ability).each do |ability| %>
     <div class="row ability">

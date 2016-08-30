@@ -26,7 +26,7 @@
   </h4>
 
 
-  <div class="variants">
+  <div class="variants <%= 'wide' if flow_service.current_question.question_responses.any? {|one| one.text.length > 12 } %>">
     <%- flow_service.current_question.question_responses.each do |variant| %>
 
       <%= form_for :variant, url: set_response_test_test_flow_path(test), html: {  } do |f| %>

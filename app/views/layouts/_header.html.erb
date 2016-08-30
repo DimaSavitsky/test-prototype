@@ -5,6 +5,18 @@
     <ul class="nav navbar-nav">
       <li class="nav-item">
         <%= link_to 'Profile', profile_path, class: "nav-link" %>
+        <div class="fake-nav"></div>
+        <ul class="nav-child">
+          <li class="nav-item-child">
+            <%= link_to 'Skills', profile_path, class: "nav-link-child" %>     
+          </li>
+          <li class="nav-item-child">
+            <%= link_to 'Work experience', profile_path, class: "nav-link-child" %>     
+          </li>
+          <li class="nav-item-child">
+            <%= link_to 'Education', profile_path, class: "nav-link-child" %>     
+          </li>
+        </ul>
       </li>
       <li class="nav-item">
         <%= link_to 'Profile Static Page', static_1_profile_path, class: "nav-link" %>

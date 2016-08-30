@@ -6,14 +6,16 @@
     <img src="<%= asset_path 'your-score-image.jpg' %>" alt="Your Score">
   </div>
   
-  <div class="test-block">
-    <h4>Thanks for taking the test!</h4>
-    <p>Your results have been saved. You can check your test report by following the link below or by logging into your account later (see "Test Reports" tab).</p>
-    <p>According to your results you appear to be the type of person who enjoys socializing with both large and smaller, more intimate groups of people. You don't mind being around big crowds, but that doesn't mean you'll want to crash every party you're invited to. Having an active social life and extending your network of friends is relatively important to you, but it isn't the most crucial thing.</p>
-    
-    <%= button_to 'View report', {action: :finalize}, class: 'btn-default btn-bottom-right' %>
-    <a href="/tests" class="btn-default btn-transparent btn-bottom-left">Close</a>
+  <div class="test-block low-height">
+    <div class="test-block-scrollable scroll-pane">
+      <h4>Thanks for taking the test!</h4>
+      <p>Your results have been saved. You can check your test report by following the link below or by logging into your account later (see "Test Reports" tab).</p>
+      <p>According to your results you appear to be the type of person who enjoys socializing with both large and smaller, more intimate groups of people. You don't mind being around big crowds, but that doesn't mean you'll want to crash every party you're invited to. Having an active social life and extending your network of friends is relatively important to you, but it isn't the most crucial thing.</p>
+    </div>
   </div>
+
+  <%= button_to 'View report', {action: :finalize}, class: 'btn-default btn-bottom-right' %>
+  <a href="/tests" class="btn-default btn-transparent btn-bottom-left">Close</a>
 <%- end %>
 
 <div class="under-modal left">

@@ -4,17 +4,18 @@
     <img src="<%= asset_path 'test-main-image.jpg' %>" alt="Test main image">
   </div>
   
-  <div class="test-block">
-    <div class="utility clearfix">
-      <div class="questions-number">11 questions</div>
+  <div class="test-block low-height">
+    <div class="test-block-scrollable scroll-pane">
+      <div class="utility clearfix">
+        <div class="questions-number">11 questions</div>
+      </div>
+      <h4>We will measure your project management and communication skills</h4>
+      <p>You will have <span>5 minutes</span> to pass the test.<br />
+  Click <span>TRY DEMO</span> to practice the test (only 3 first questions).<br />
+  If you are ready to pass the test click <span>START TEST</span>. You will not be able to re-take passed test during the next 6 month.</p>
     </div>
-    <h4>We will measure your project management and communication skills</h4>
-    <p>You will have <span>5 minutes</span> to pass the test.<br />
-Click <span>TRY DEMO</span> to practice the test (only 3 first questions).<br />
-If you are ready to pass the test click <span>START TEST</span>. You will not be able to re-take passed test during the next 6 month.</p>
-    
-    <%= link_to 'Start test', test_test_flow_path(@test) , class: 'btn-default btn-bottom-right'%>
   </div>
+  <%= link_to 'Start test', test_test_flow_path(@test) , class: 'btn-default btn-bottom-right'%>
   
   <div class="under-modal"><a href="#instructions" id="open-instructions">Instructions</a><a href="/tests">Cancel</a></div>
 </div>

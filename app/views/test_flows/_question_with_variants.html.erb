@@ -5,36 +5,38 @@
 </div>
 
 <div class="test-block">
-  <div class="utility clearfix">
-    <%- unless flow_service.on_question?(0) %>
-      <div class = "btn-group btn-group-lg" >
-        <%= link_to '← Back',
-                    goto_question_test_test_flow_path(test, question_index:  flow_service.previous_question_index) ,
-                    class: 'back-link'%>
+  <div class="test-block-scrollable scroll-pane">
+    <div class="utility clearfix">
+      <%- unless flow_service.on_question?(0) %>
+        <div class = "btn-group btn-group-lg" >
+          <%= link_to '← Back',
+                      goto_question_test_test_flow_path(test, question_index:  flow_service.previous_question_index) ,
+                      class: 'back-link'%>
+        </div>
+      <% end %>
+      <div class="questions-number">Question <%= flow_service.next_question_index %> of <%= flow_service.number_of_questions %></div>
+      <div class="countdown">
+        <%- if flow_service.time_limit %>
+          <%= countdown_to(flow_service.time_limit) %>
+        <%- end %>
       </div>
-    <% end %>
-    <div class="questions-number">Question <%= flow_service.next_question_index %> of <%= flow_service.number_of_questions %></div>
-    <div class="countdown">
-      <%- if flow_service.time_limit %>
-        <%= countdown_to(flow_service.time_limit) %>
+    </div>
+
+    <h4>
+      <%= flow_service.current_question.text %>
+    </h4>
+
+
+    <div class="variants <%= 'wide' if flow_service.current_question.question_responses.any? {|one| one.text.length > 12 } %>">
+      <%- flow_service.current_question.question_responses.each do |variant| %>
+
+        <%= form_for :variant, url: set_response_test_test_flow_path(test), html: {  } do |f| %>
+          <%= f.hidden_field :variant_id, value: variant.id %>
+          <%= f.submit variant.text,
+                       class: "btn btn-primary #{ 'btn-success' if variant.id == flow_service.current_response.question_response_id }" %>
+        <%- end %>
+
       <%- end %>
     </div>
-  </div>
-
-  <h4>
-    <%= flow_service.current_question.text %>
-  </h4>
-
-
-  <div class="variants <%= 'wide' if flow_service.current_question.question_responses.any? {|one| one.text.length > 12 } %>">
-    <%- flow_service.current_question.question_responses.each do |variant| %>
-
-      <%= form_for :variant, url: set_response_test_test_flow_path(test), html: {  } do |f| %>
-        <%= f.hidden_field :variant_id, value: variant.id %>
-        <%= f.submit variant.text,
-                     class: "btn btn-primary #{ 'btn-success' if variant.id == flow_service.current_response.question_response_id }" %>
-      <%- end %>
-
-    <%- end %>
   </div>
 </div>

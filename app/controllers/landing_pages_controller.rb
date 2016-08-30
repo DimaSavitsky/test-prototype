@@ -1,6 +1,6 @@
 class LandingPagesController < ApplicationController
 
-  layout 'login'
+  layout 'landing'
 
   def show
   end

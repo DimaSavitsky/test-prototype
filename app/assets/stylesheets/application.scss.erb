@@ -944,3 +944,203 @@ h2{
     background-color: #edf2f4;
   }
 }
+
+body.landing_page{
+  background-color: #ffffff;
+  
+  section.main{
+    min-height: 500px;
+    background: url(<%= asset_path 'landing-main-bg.png' %>) no-repeat center top, -webkit-linear-gradient(138deg, #3aa5db 0%, #edcc38 100%);
+    background: url(<%= asset_path 'landing-main-bg.png' %>) no-repeat center top, -moz-linear-gradient(138deg, #3aa5db 0%, #edcc38 100%);
+    background: url(<%= asset_path 'landing-main-bg.png' %>) no-repeat center top, -o-linear-gradient(138deg, #3aa5db 0%, #edcc38 100%);
+    background: url(<%= asset_path 'landing-main-bg.png' %>) no-repeat center top, -ms-linear-gradient(138deg, #3aa5db 0%, #edcc38 100%);
+    background: url(<%= asset_path 'landing-main-bg.png' %>) no-repeat center top, linear-gradient(-48deg, #3aa5db 0%, #edcc38 100%);
+  }
+  
+  section.whouse{
+    padding-top: 160px;
+    .block{
+      padding-top: 176px;
+      background-position: center top;
+      background-repeat: no-repeat;
+      margin-bottom: 160px;
+      
+      h3{
+        color: #444444;
+        font: 700 24px 'Open Sans';
+        text-align: center;
+      }
+      p{
+        color: #999999;
+        font: 400 16px / 24px 'Open Sans';
+        
+        span{
+          color: #3aa5db;
+          font: italic 700 16px / 24px 'Open Sans';
+        }
+      }
+      &.labor{
+        background-image: url(<%= asset_path 'labor.png' %>);
+      }
+      &.career{
+        background-image: url(<%= asset_path 'career.png' %>);
+      }
+      &.company{
+        background-image: url(<%= asset_path 'company.png' %>);
+      }
+      &.agency{
+        background-image: url(<%= asset_path 'agency.png' %>);
+      }
+      &.trainer{
+        background-image: url(<%= asset_path 'trainer.png' %>);
+      }
+    }
+  }
+  
+  section.labor{
+    position: relative;
+    background-color: #339fca;
+    padding: 150px 0;
+    text-align: right;
+    .col-md-8{
+      z-index: 50;
+    }
+    h2{
+      color: #205b72;
+      font: 700 48px 'Open Sans';
+      margin-bottom: 20px;
+      margin-top: 0;
+    }
+    p{
+      color: #a7e6fe;
+      font: 400 18px / 30px 'Open Sans';
+      &.quote{
+        color: #ffffff;
+        font: italic 24px / 36px 'Open Sans';
+        padding-right: 25px;
+        border-right: 2px solid #ffffff;
+      }
+    }
+    .bg-image{
+      background: url(<%= asset_path 'landing-labor-bg.png' %>) no-repeat center top;
+      display: block;
+      height: 815px;
+      width: 878px;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      margin-left: -200px;
+      z-index: 20;
+    }
+  }
+  
+  section.career{
+    position: relative;
+    background-color: #edf2f4;
+    padding: 150px 0 195px;
+    .col-md-8{
+      z-index: 50;
+    }
+    h2{
+      color: #205b72;
+      font: 700 48px 'Open Sans';
+      margin-bottom: 20px;
+      margin-top: 0;
+    }
+    p{
+      color: #999999;
+      font: 400 18px / 30px 'Open Sans';
+      &.quote{
+        color: #3aa5db;
+        font: italic 24px / 36px 'Open Sans';
+        padding-left: 25px;
+        border-left: 2px solid #3aa5db;
+      }
+    }
+    .bg-image{
+      background: url(<%= asset_path 'landing-career-bg.png' %>) no-repeat center top;
+      display: block;
+      height: 815px;
+      width: 878px;
+      position: absolute;
+      right: 50%;
+      top: 102px;
+      margin-left: -200px;
+      z-index: 20;
+    }
+  }
+  
+  section.agency{
+    position: relative;
+    background-color: #45b870;
+    padding: 150px 0;
+    text-align: right;
+    .col-md-8{
+      z-index: 50;
+    }
+    h2{
+      color: #186e38;
+      font: 700 48px 'Open Sans';
+      margin-bottom: 20px;
+      margin-top: 0;
+    }
+    p{
+      color: #a0ffc4;
+      font: 400 18px / 30px 'Open Sans';
+      &.quote{
+        color: #ffffff;
+        font: italic 24px / 36px 'Open Sans';
+        padding-right: 25px;
+        border-right: 2px solid #ffffff;
+      }
+    }
+    .bg-image{
+      background: url(<%= asset_path 'landing-agency-bg.png' %>) no-repeat center top;
+      display: block;
+      height: 815px;
+      width: 878px;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      margin-left: -200px;
+      z-index: 20;
+    }
+  }
+  
+  section.training{
+    position: relative;
+    background-color: #edf2f4;
+    padding: 150px 0 195px;
+    .col-md-8{
+      z-index: 50;
+    }
+    h2{
+      color: #444444;
+      font: 700 48px 'Open Sans';
+      margin-bottom: 20px;
+      margin-top: 0;
+    }
+    p{
+      color: #999999;
+      font: 400 18px / 30px 'Open Sans';
+      &.quote{
+        color: #3aa5db;
+        font: italic 24px / 36px 'Open Sans';
+        padding-left: 25px;
+        border-left: 2px solid #3aa5db;
+      }
+    }
+    .bg-image{
+      background: url(<%= asset_path 'landing-training-bg.png' %>) no-repeat center top;
+      background: radial-gradient(center, ellipse closest-side, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 62%, rgba(255, 255, 255, 0) 100%);
+      display: block;
+      height: 815px;
+      width: 878px;
+      position: absolute;
+      right: 50%;
+      top: 102px;
+      margin-left: -200px;
+      z-index: 20;
+    }
+  }
+}

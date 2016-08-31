@@ -3,9 +3,11 @@
     <%= link_to image_tag("navbar-logo.png", alt: 'logo'), root_path, class: "navbar-brand" %>
 
     <ul class="nav navbar-nav ">
-      <li class="nav-item <%= 'current' if current_page?(root_path) || current_page?(profile_path) %>" >
-        <%= link_to 'Home', root_path, class: "nav-link" %>
+      <!--
+      <li class="nav-item <%#= 'current' if current_page?(root_path) || current_page?(profile_path) %>" >
+        <%#= link_to 'Home', root_path, class: "nav-link" %>
       </li>
+      -->
       <li class="nav-item with_dropdown <%= 'current' if params[:action].in? ['static_1', 'static_2', 'static_3']%>">
         <%= link_to 'Profile', static_1_profile_path, class: "nav-link" %>
         <ul class="nav-child" style="margin-left: 26px;">
@@ -45,6 +47,17 @@
           </li>
           <li class="nav-item-child">
             <%= link_to 'Resources', profile_path, class: "nav-link-child" %>     
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item with_dropdown <%= 'current' if current_page?(tests_path)%>">
+        <%= link_to 'Others', tests_path, class: "nav-link" %>
+        <ul class="nav-child" style="margin-left: 28px;">
+          <li class="nav-item-child">
+            <%= link_to 'Job Applications', tests_path, class: "nav-link-child #{ 'current' if current_page?(tests_path)}" %>
+          </li>
+          <li class="nav-item-child">
+            <%= link_to 'Test Builder', profile_path, class: "nav-link-child" %>     
           </li>
         </ul>
       </li>

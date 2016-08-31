@@ -2,14 +2,14 @@
   <div class="container">
     <%= link_to image_tag("navbar-logo.png", alt: 'logo'), root_path, class: "navbar-brand" %>
 
-    <ul class="nav navbar-nav ">
+    <ul class="nav navbar-nav">
       <!--
       <li class="nav-item <%#= 'current' if current_page?(root_path) || current_page?(profile_path) %>" >
         <%#= link_to 'Home', root_path, class: "nav-link" %>
       </li>
       -->
-      <li class="nav-item with_dropdown <%= 'current' if params[:action].in? ['static_1', 'static_2', 'static_3']%>">
-        <%= link_to 'Profile', static_1_profile_path, class: "nav-link" %>
+      <li class="nav-item with_dropdown <%= 'current' if params[:action].in? ['show', 'static_1', 'static_2', 'static_3']%>">
+        <%= link_to 'Profile', profile_path, class: "nav-link" %>
         <ul class="nav-child" style="margin-left: 26px;">
           <li class="nav-item-child">
             <%= link_to 'Skills', static_1_profile_path, class: "nav-link-child #{ 'current' if params[:action] == 'static_1'}" %>
@@ -29,10 +29,10 @@
             <%= link_to 'Recommendations', profile_occupations_path, class: "nav-link-child #{ 'current' if current_page?(profile_occupations_path)}" %>
           </li>
           <li class="nav-item-child">
-            <%= link_to 'Job search', job_postings_path, class: "nav-link-child #{ 'current' if current_page?(job_postings_path)}" %>
+            <%= link_to 'Job search', root_path, class: "nav-link-child #{ 'current' if current_page?(job_postings_path)}" %>
           </li>
           <li class="nav-item-child">
-            <%= link_to 'Job application', profile_path, class: "nav-link-child" %>     
+            <%= link_to 'Job application', root_path, class: "nav-link-child" %>
           </li>
         </ul>
       </li>
@@ -43,26 +43,26 @@
             <%= link_to 'Test', tests_path, class: "nav-link-child #{ 'current' if current_page?(tests_path)}" %>
           </li>
           <li class="nav-item-child">
-            <%= link_to 'Training', profile_path, class: "nav-link-child" %>     
+            <%= link_to 'Training', root_path, class: "nav-link-child" %>
           </li>
           <li class="nav-item-child">
-            <%= link_to 'Resources', profile_path, class: "nav-link-child" %>     
+            <%= link_to 'Resources', root_path, class: "nav-link-child" %>
           </li>
         </ul>
       </li>
-      <li class="nav-item with_dropdown <%= 'current' if current_page?(tests_path)%>">
-        <%= link_to 'Others', tests_path, class: "nav-link" %>
+      <li class="nav-item with_dropdown <%= 'current' if current_page?(administration_tests_path) || current_page?(job_postings_path)%>">
+        <%= link_to 'Others', job_postings_path, class: "nav-link" %>
         <ul class="nav-child" style="margin-left: 28px;">
           <li class="nav-item-child">
-            <%= link_to 'Job Applications', tests_path, class: "nav-link-child #{ 'current' if current_page?(tests_path)}" %>
+            <%= link_to 'Job Applications', job_postings_path, class: "nav-link-child #{ 'current' if current_page?(job_postings_path)}" %>
           </li>
           <li class="nav-item-child">
-            <%= link_to 'Test Builder', profile_path, class: "nav-link-child" %>     
+            <%= link_to 'Test Builder', administration_tests_path, class: "nav-link-child" %>
           </li>
         </ul>
       </li>
       <li class="nav-item">
-        <%= link_to 'Message', profile_path, class: "nav-link" %>
+        <%= link_to 'Message', root_path, class: "nav-link" %>
       </li>
       
       <!--

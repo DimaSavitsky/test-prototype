@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
 
   resource :landing_page, only: [:show]
+  resource :home, only: [:show]
 
 
   resource :profile, only: [:show, :edit, :update] do
@@ -48,6 +49,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'profiles#show'
+  root to: 'homes#show'
 
 end

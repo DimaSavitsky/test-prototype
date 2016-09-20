@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  layout 'full-width', only: [:static_1]
   authorize_resource class: false
 
   before_filter :set_profile_record, only: [:edit, :update, :static_1, :static_2, :static_3]

@@ -7,20 +7,24 @@
   <%= resource_errors_top job_posting %>
 
   <%- if job_posting.new_record? %>
+    <div class="row new-job-heading">
+      <div class="col-md-6">
+        
+        <fieldset class="form-group">
+          <%= f.label :select_industry %>
+          <br/>
+          <%= f.collection_select :internal_industry_id, InternalIndustry.all, :id, :industry_name, { prompt: 'All Industries' }, { id: 'industry'} %>
+        </fieldset>
 
-    <fieldset class="form-group">
-      <%= f.label :select_industry %>
-      <br/>
-      <%= f.collection_select :internal_industry_id, InternalIndustry.all, :id, :industry_name, { prompt: 'All Industries' }, { id: 'industry'} %>
-    </fieldset>
-
-    <fieldset class="form-group">
-      <%= f.label :select_occupation %>
-      <div class="ui-widget">
-        <%= f.collection_select :onetsoc_code, Onet::Occupation.all, :onetsoc_code, :title, { prompt: '' }, {id: 'combobox'} %>
+        <fieldset class="form-group">
+          <%= f.label :select_occupation %>
+          <div class="ui-widget">
+            <%= f.collection_select :onetsoc_code, Onet::Occupation.all, :onetsoc_code, :title, { prompt: '' }, {id: 'combobox'} %>
+          </div>
+        </fieldset>
+        
       </div>
-    </fieldset>
-
+    </div>
   <%- end %>
 
   <div id="posting-specifics">
@@ -29,7 +33,9 @@
     <%- end %>
   </div>
 
+<!--
   <div class="actions">
-    <%= f.submit nil, id: 'job-posting-submit', disabled: job_posting.onetsoc_code.blank? %>
+    <-%= f.submit nil, id: 'job-posting-submit', disabled: job_posting.onetsoc_code.blank? %>
   </div>
+-->
 <% end %>

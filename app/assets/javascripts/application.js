@@ -61,6 +61,7 @@ ready = function() {
     tableFix = (window_width - 950) / 2;
     $('.table-padding').css('width',tableFix);
     $('.ui-tooltip').css('left',tableFix,'important');
+    $('.table-jobpostings').css('width', window_width);
   };  
 
   $('[data-toggle="tooltip"]').tooltip({
@@ -78,12 +79,6 @@ ready = function() {
         $(this).html('Expand');
       }
   });
-  
-//    $('.btn-expand').click(function(event){
-//      event.preventDefault();
-//        $(this).toggleClass('expanded');
-//        $(this).closest('.container').prev('.full-width').find('table tr:gt(5)').toggle(1000);
-//    });
   
 };
 

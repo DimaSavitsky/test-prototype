@@ -8,7 +8,7 @@
         <%#= link_to 'Home', root_path, class: "nav-link" %>
       </li>
       -->
-      <li class="nav-item with_dropdown <%= 'current' if params[:action].in? ['show', 'static_1', 'static_2', 'static_3']%>">
+      <li class="nav-item with_dropdown <%= 'current' if current_page?(profile_path) || params[:action].in?(['static_1', 'static_2', 'static_3'])%>">
         <%= link_to 'Profile', profile_path, class: "nav-link" %>
         <ul class="nav-child" style="margin-left: 26px;">
           <li class="nav-item-child">
@@ -22,17 +22,17 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item with_dropdown <%= 'current' if params[:controller] == 'occupations' %>">
+      <li class="nav-item with_dropdown <%= 'current' if current_page?(job_searches_path) || current_page?(job_applications_path) || params[:controller] == 'occupations' %>">
         <%= link_to 'Career planning', profile_occupations_path, class: "nav-link" %>
         <ul class="nav-child" style="margin-left: 61px;">
           <li class="nav-item-child">
             <%= link_to 'Recommendations', profile_occupations_path, class: "nav-link-child #{ 'current' if params[:controller] == 'occupations'}" %>
           </li>
           <li class="nav-item-child">
-            <%= link_to 'Job search', root_path, class: "nav-link-child" %>
+            <%= link_to 'Job search', job_searches_path, class: "nav-link-child #{ 'current' if current_page?(job_searches_path)}" %>
           </li>
           <li class="nav-item-child">
-            <%= link_to 'Job application', root_path, class: "nav-link-child" %>
+            <%= link_to 'Job application', job_applications_path, class: "nav-link-child #{ 'current' if current_page?(job_applications_path)}" %>
           </li>
         </ul>
       </li>
@@ -50,11 +50,11 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item with_dropdown <%= 'current' if current_page?(administration_tests_path) || current_page?(job_postings_path)%>">
+      <li class="nav-item with_dropdown <%= 'current' if current_page?(administration_tests_path) || params[:controller] == 'job_postings'%>">
         <%= link_to 'Others', job_postings_path, class: "nav-link" %>
         <ul class="nav-child" style="margin-left: 28px;">
           <li class="nav-item-child">
-            <%= link_to 'Job Applications', job_postings_path, class: "nav-link-child #{ 'current' if current_page?(job_postings_path)}" %>
+            <%= link_to 'Job Applications', job_postings_path, class: "nav-link-child #{ 'current' if params[:controller] == 'job_postings'}" %>
           </li>
           <li class="nav-item-child">
             <%= link_to 'Test Builder', administration_tests_path, class: "nav-link-child" %>

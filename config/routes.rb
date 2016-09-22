@@ -60,6 +60,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :job_applications, only: [:index]
+  resources :job_searches, only: [:index]
+
   root to: 'homes#show'
 
 end

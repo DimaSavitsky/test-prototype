@@ -29,5 +29,7 @@
     <a class="btn-default btn-transparent" href="#">Download as pdf</a>
     <a class="btn-default" href="/tests">Close</a>
   </div>
-  <div class="under-modal left"><a href="#">Re-take the test</a></div>
+  <div class="under-modal left">
+    <%= link_to 'Re-take the test', goto_question_test_test_flow_path(@test_result.test, question_index: 0) %>
+  </div>
 </div>

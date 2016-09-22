@@ -36,14 +36,14 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item with_dropdown <%= 'current' if current_page?(tests_path)%>">
+      <li class="nav-item with_dropdown <%= 'current' if current_page?(tests_path) || params[:controller] == 'trainings' %>">
         <%= link_to 'Life long learning', tests_path, class: "nav-link" %>
         <ul class="nav-child" style="margin-left: 69px;">
           <li class="nav-item-child">
             <%= link_to 'Test', tests_path, class: "nav-link-child #{ 'current' if current_page?(tests_path)}" %>
           </li>
           <li class="nav-item-child">
-            <%= link_to 'Training', root_path, class: "nav-link-child" %>
+            <%= link_to 'Training', trainings_path, class: "nav-link-child #{ 'current' if params[:controller] == 'trainings'}" %>
           </li>
           <li class="nav-item-child">
             <%= link_to 'Resources', root_path, class: "nav-link-child" %>

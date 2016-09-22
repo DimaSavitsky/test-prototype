@@ -42,6 +42,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :trainings, only: [:index] do
+    collection do
+      get :show_fake
+    end
+  end
+
   resources :job_postings do
     collection do
       get :industry_occupations

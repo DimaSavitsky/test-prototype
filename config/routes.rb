@@ -61,7 +61,11 @@ Rails.application.routes.draw do
   end
 
   resources :job_applications, only: [:index]
-  resources :job_searches, only: [:index]
+  resources :job_searches, only: [:index] do
+    collection do
+      get :show_fake
+    end
+  end
 
   root to: 'homes#show'
 

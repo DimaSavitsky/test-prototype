@@ -1,20 +1,21 @@
-<div class="row occupation-heading">
-  <div class="col-md-9 occupation-description">
-    <h2><%= occupation.title %></h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+       <div class="row occupation-heading">
+        <div class="col-md-9 occupation-description">
+          <h2><%= occupation.title %></h2>
 
-    <p class="lead">
-      <%= occupation.description %>
-    </p>
-  </div>
-  <div class="col-md-3 occupation-score">
-    <div class="score-holder">
-      <p class="score-colored"><%= occupation.match_score %></p>
-      <p>Distance score</p>
-    </div>
-  </div>
-</div>
-
-
+          <p class="lead">
+            <%= occupation.description %>
+          </p>
+        </div>
+        <div class="col-md-3 occupation-score">
+          <div class="score-holder">
+            <p class="score-colored"><%= occupation.match_score %></p>
+            <p>Distance score</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -22,21 +23,19 @@
 <div class="full-width">
   <div class="container-fluid">
     <div class="row">
-    
-<table class="table table-hover table-occupations" width="100%">
-  <tr>
-    <th class="table-padding"></th>
-    <th>Skill</th>
-    <th>Required Score</th>
-    <th>Your Score</th>
-    <th>Deviation</th>
-    <th class="table-padding"></th>
-  </tr>
-  <%- occupation.occupation_abilities.order(data_value: :desc).includes(:internal_ability).each do |ability| %>
-    <%= occupation_ability_row(@user_abilities, ability) %>
-  <%- end %>
-</table>
-
+      <table class="table table-hover table-occupations" width="100%">
+        <tr>
+          <th class="table-padding"></th>
+          <th>Skill</th>
+          <th>Required Score</th>
+          <th>Your Score</th>
+          <th>Deviation</th>
+          <th class="table-padding"></th>
+        </tr>
+        <%- occupation.occupation_abilities.order(data_value: :desc).includes(:internal_ability).each do |ability| %>
+          <%= occupation_ability_row(@user_abilities, ability) %>
+        <%- end %>
+      </table>
     </div>
   </div>
 </div>
@@ -44,3 +43,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+      <a class="btn-default btn-transparent btn-expand" href="#">Expand</a>
+      <a class="btn-default btn-207px" href="#">View full report</a>
+    </div>
+  </div>
+</div>

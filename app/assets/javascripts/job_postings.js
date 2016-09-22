@@ -190,11 +190,8 @@ var postingsFormReady = function() {
 
   });
 
-
-
 };
 
 
-$(document).ready(postingsFormReady);
 $(document).on('turbolinks:load', postingsFormReady);
 

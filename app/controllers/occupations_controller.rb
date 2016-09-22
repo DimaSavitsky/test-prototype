@@ -1,4 +1,5 @@
 class OccupationsController < ApplicationController
+  layout 'full-width'
   authorize_resource class: false
 
   before_filter :set_user_abilities

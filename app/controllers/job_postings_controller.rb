@@ -1,4 +1,5 @@
 class JobPostingsController < ApplicationController
+  layout 'full-width', only: [:new]
 
   load_and_authorize_resource
 

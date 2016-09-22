@@ -1,18 +1,25 @@
 <%= hidden_field_tag :hiddenSpecificsOnetSocCode, occupation.onetsoc_code %>
 
 <%= fields_for job_posting do |form_builder| %>
+   <div class="row">
+     <div class="col-md-6">
+        <fieldset class="form-group">
+          <%= form_builder.label :title %>
+          <%= form_builder.text_field :title, placeholder: occupation.title %>
+        </fieldset>
+     </div>
+     <div class="col-md-6 right">
+        <fieldset class="form-group">
+          <%= form_builder.label :description %>
+          <%= form_builder.text_area :description, placeholder: occupation.description  %>
+        </fieldset>
+     </div>
+   </div>
 
-  <div class="card">
+   
     <fieldset class="form-group">
-      <%= form_builder.label :title %>
-      <%= form_builder.text_field :title, placeholder: occupation.title %>
     </fieldset>
-
-    <fieldset class="form-group">
-      <%= form_builder.label :description %>
-      <%= form_builder.text_area :description, placeholder: occupation.description  %>
-    </fieldset>
-
+   
     <%- if occupation.task_statements.present? %>
       <fieldset class="form-group">
       <%= form_builder.label :task_statements %>
@@ -20,53 +27,50 @@
         Task Frequency values are given in accordance to Occupation Expert reports.
         If empty - there is no expert data available.
       </p>
+      
+      <%- occupation.ordered_task_statements.each_with_index do |task, index| %>
+        <label class="fw-checkbox"><input type="checkbox" name="checkbox" value="value"><p><%= task.task %> <span><%= task.frequency_description %></span></p></label>
+      <%- end %>
+<!--
       <table class="table table-sm">
         <tr>
           <td></td>
           <th>Frequency</th>
           <th>Required</th>
         </tr>
-        <%- occupation.ordered_task_statements.each_with_index do |task, index| %>
+        <-%- occupation.ordered_task_statements.each_with_index do |task, index| %>
           <tr>
-            <th><%= task.task %></th>
+            <th><-%= task.task %></th>
             <td>
-               <%= task.frequency_description %>
+               <-%= task.frequency_description %>
             </td>
             <td>
-              <%= radio_button_tag "job_posting[tasks[#{index}]]", 'false', !job_posting.tasks[index] %>
-              <%= label "job_posting_tasks", "#{index}_false", 'No' %>
-              <%= radio_button_tag "job_posting[tasks[#{index}]]", 'true', job_posting.tasks[index] %>
-              <%= label "job_posting_tasks", "#{index}_true", 'Yes' %>
+              <-%= radio_button_tag "job_posting[tasks[#{index}]]", 'false', !job_posting.tasks[index] %>
+              <-%= label "job_posting_tasks", "#{index}_false", 'No' %>
+              <-%= radio_button_tag "job_posting[tasks[#{index}]]", 'true', job_posting.tasks[index] %>
+              <-%= label "job_posting_tasks", "#{index}_true", 'Yes' %>
             </td>
           </tr>
-        <%- end %>
+        <-%- end %>
       </table>
+-->
     </fieldset>
     <%- end %>
 
     <%- if occupation.occupation_abilities.present? %>
       <fieldset class="form-group">
         <%= form_builder.label :abilities %>
-        <table class="table table-sm">
-          <tr>
-            <td colspan="2"></td>
-            <th>Required</th>
-          </tr>
+        <table class="table table-hover table-occupations table-abilities table-jobpostings">
           <%- occupation.ordered_occupation_abilities.each_with_index do |ability, index| %>
             <tr data-toggle='tooltip' data-placement='right' title="<%= ability.internal_ability.description %>">
-              <th><%= ability.internal_ability.name %></th>
-              <td><%= ability.data_value %></td>
-              <td>
-                <%= radio_button_tag "job_posting[abilities[#{index}]]", 'false', !job_posting.abilities[index] %>
-                <%= label "job_posting_abilities", "#{index}_false", 'No' %>
-                <%= radio_button_tag "job_posting[abilities[#{index}]]", 'true', job_posting.abilities[index] %>
-                <%= label "job_posting_abilities", "#{index}_true", 'Yes' %>
-              </td>
+              <td class="table-padding"></td>
+              <th style="width: 475px;"><label class="fw-checkbox"><input type="checkbox" name="checkbox" value="value"><p><%= ability.internal_ability.name %></p></label></th>
+              <td style="width: 475px;"><%= ability.data_value %></td>
+              <td class="table-padding"></td>
             </tr>
           <%- end %>
         </table>
       </fieldset>
     <%- end %>
-  </div>
 
 <%- end %>

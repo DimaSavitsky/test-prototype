@@ -1,6 +1,7 @@
 var postingsFormReady = function() {
 
   var submitButton = $('#job-posting-submit');
+  var fakeSubmitButton = $('#fake-create-button');
   var currentOccupationOpen = function() { return $('input[name=hiddenSpecificsOnetSocCode]').val(); };
   
   var optionChange = function(event){
@@ -23,6 +24,11 @@ var postingsFormReady = function() {
       submitButton.prop('disabled', false);
     }
   };
+
+  fakeSubmitButton.on('click', function(event) {
+    event.preventDefault();
+    submitButton.click();
+  });
 
   $.widget( "custom.combobox", {
     _create: function() {

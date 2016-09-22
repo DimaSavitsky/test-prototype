@@ -33,9 +33,9 @@
     <%- end %>
   </div>
 
-<!--
-  <div class="actions">
-    <-%= f.submit nil, id: 'job-posting-submit', disabled: job_posting.onetsoc_code.blank? %>
+
+  <div class="actions" hidden="true">
+    <%= f.submit nil, id: 'job-posting-submit', disabled: job_posting.onetsoc_code.blank? %>
   </div>
--->
+
 <% end %>

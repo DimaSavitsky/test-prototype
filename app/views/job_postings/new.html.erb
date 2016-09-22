@@ -13,12 +13,8 @@
    <div class="row">
      <div class="col-md-12">
        
-        <%= link_to 'Create Job Posting', job_postings_path, class: 'btn-default' %>
+        <%= link_to 'Create Job Posting', '#', class: 'btn-default', id: 'fake-create-button' %>
         <%= link_to 'Cancel', job_postings_path, class: 'link' %>
 
-        <%- if current_user.id == @job_posting.user_id %>
-          |
-          <%= link_to 'Create Job Posting', edit_job_posting_path(@job_posting) %>
-        <%- end %>
      </div>
 </div>

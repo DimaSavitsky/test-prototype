@@ -22,39 +22,24 @@
    
     <%- if occupation.task_statements.present? %>
       <fieldset class="form-group">
-      <%= form_builder.label :task_statements %>
-      <p class="small">
-        Task Frequency values are given in accordance to Occupation Expert reports.
-        If empty - there is no expert data available.
-      </p>
-      
-      <%- occupation.ordered_task_statements.each_with_index do |task, index| %>
-        <label class="fw-checkbox"><input type="checkbox" name="checkbox" value="value"><p><%= task.task %> <span><%= task.frequency_description %></span></p></label>
-      <%- end %>
-<!--
-      <table class="table table-sm">
-        <tr>
-          <td></td>
-          <th>Frequency</th>
-          <th>Required</th>
-        </tr>
-        <-%- occupation.ordered_task_statements.each_with_index do |task, index| %>
-          <tr>
-            <th><-%= task.task %></th>
-            <td>
-               <-%= task.frequency_description %>
-            </td>
-            <td>
-              <-%= radio_button_tag "job_posting[tasks[#{index}]]", 'false', !job_posting.tasks[index] %>
-              <-%= label "job_posting_tasks", "#{index}_false", 'No' %>
-              <-%= radio_button_tag "job_posting[tasks[#{index}]]", 'true', job_posting.tasks[index] %>
-              <-%= label "job_posting_tasks", "#{index}_true", 'Yes' %>
-            </td>
-          </tr>
-        <-%- end %>
-      </table>
--->
-    </fieldset>
+        <%= form_builder.label :task_statements %>
+        <p class="small">
+          Task Frequency values are given in accordance to Occupation Expert reports.
+          If empty - there is no expert data available.
+        </p>
+
+        <%- occupation.ordered_task_statements.each_with_index do |task, index| %>
+          <label class="fw-checkbox">
+
+            <%= hidden_field_tag "job_posting[tasks[#{index}]]", 'false' %>
+            <%= check_box_tag "job_posting[tasks[#{index}]]", 'true', job_posting.tasks[index] %>
+
+            <p>
+              <%= task.task %> <span><%= task.frequency_description %></span>
+            </p>
+          </label>
+        <%- end %>
+      </fieldset>
     <%- end %>
 
     <%- if occupation.occupation_abilities.present? %>
@@ -64,7 +49,17 @@
           <%- occupation.ordered_occupation_abilities.each_with_index do |ability, index| %>
             <tr data-toggle='tooltip' data-placement='right' title="<%= ability.internal_ability.description %>">
               <td class="table-padding"></td>
-              <th style="width: 475px;"><label class="fw-checkbox"><input type="checkbox" name="checkbox" value="value"><p><%= ability.internal_ability.name %></p></label></th>
+              <th style="width: 475px;">
+                <label class="fw-checkbox">
+
+                  <%= hidden_field_tag "job_posting[abilities[#{index}]]", 'false' %>
+                  <%= check_box_tag "job_posting[abilities[#{index}]]", 'true', job_posting.abilities[index] %>
+
+                  <p>
+                    <%= ability.internal_ability.name %>
+                  </p>
+                </label>
+              </th>
               <td style="width: 475px;"><%= ability.data_value %></td>
               <td class="table-padding"></td>
             </tr>

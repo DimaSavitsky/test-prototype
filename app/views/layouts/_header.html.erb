@@ -22,14 +22,14 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item with_dropdown <%= 'current' if current_page?(profile_occupations_path) %>">
+      <li class="nav-item with_dropdown <%= 'current' if params[:controller] == 'occupations' %>">
         <%= link_to 'Career planning', profile_occupations_path, class: "nav-link" %>
         <ul class="nav-child" style="margin-left: 61px;">
           <li class="nav-item-child">
-            <%= link_to 'Recommendations', profile_occupations_path, class: "nav-link-child #{ 'current' if current_page?(profile_occupations_path)}" %>
+            <%= link_to 'Recommendations', profile_occupations_path, class: "nav-link-child #{ 'current' if params[:controller] == 'occupations'}" %>
           </li>
           <li class="nav-item-child">
-            <%= link_to 'Job search', root_path, class: "nav-link-child #{ 'current' if current_page?(job_postings_path)}" %>
+            <%= link_to 'Job search', root_path, class: "nav-link-child" %>
           </li>
           <li class="nav-item-child">
             <%= link_to 'Job application', root_path, class: "nav-link-child" %>

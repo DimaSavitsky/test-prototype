@@ -13,6 +13,9 @@ class OccupationsController < ApplicationController
     end
   end
 
+  def show_fake
+  end
+
   private
 
   def set_user_abilities

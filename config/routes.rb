@@ -25,7 +25,12 @@ Rails.application.routes.draw do
 
   resource :profile, only: [:show, :edit, :update] do
     resources :test_results, only: [:show]
-    resources :occupations, only: [:index]
+
+    resources :occupations, only: [:index] do
+      collection do
+        get :show_fake
+      end
+    end
 
     member do
       get :static_1

@@ -50,9 +50,13 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item with_dropdown <%= 'current' if current_page?(administration_tests_path) || params[:controller] == 'job_postings'%>">
+      <li class="nav-item with_dropdown <%= 'current' if current_page?(administration_tests_path) || params[:controller].in?(['job_postings', 'fake_job_postings'])%>">
         <%= link_to 'Others', job_postings_path, class: "nav-link" %>
+
         <ul class="nav-child" style="margin-left: 28px;">
+          <li class="nav-item-child">
+            <%= link_to 'Job Postings', fake_job_postings_path, class: "nav-link-child #{ 'current' if params[:controller] == 'fake_job_postings'}" %>
+          </li>
           <li class="nav-item-child">
             <%= link_to 'Job Applications', job_postings_path, class: "nav-link-child #{ 'current' if params[:controller] == 'job_postings'}" %>
           </li>

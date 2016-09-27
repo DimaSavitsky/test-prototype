@@ -61,9 +61,12 @@ Rails.application.routes.draw do
   end
 
   resources :job_applications, only: [:index]
-  resources :job_searches, only: [:index] do
+  resources :job_searches, only: [:index]
+
+  resources :fake_job_postings, only: [:index] do
     collection do
-      get :show_fake
+      get :fake_new
+      get :fake_preview
     end
   end
 

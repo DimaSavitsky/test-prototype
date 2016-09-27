@@ -12,6 +12,9 @@
         <%= link_to 'Profile', profile_path, class: "nav-link" %>
         <ul class="nav-child" style="margin-left: 26px;">
           <li class="nav-item-child">
+            <%= link_to 'General', profile_path, class: "nav-link-child #{ 'current' if params[:action] == 'static_1'}" %>
+          </li>
+          <li class="nav-item-child">
             <%= link_to 'Skills', static_1_profile_path, class: "nav-link-child #{ 'current' if params[:action] == 'static_1'}" %>
           </li>
           <li class="nav-item-child">

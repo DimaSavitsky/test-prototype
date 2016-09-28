@@ -25,11 +25,14 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item with_dropdown <%= 'current' if (params[:controller] == 'job_searches') || current_page?(job_applications_path) || (params[:controller] == 'occupations') %>">
+      <li class="nav-item with_dropdown <%= 'current' if (params[:controller].in? ['job_searches', 'gap_reports', 'occupations']) || current_page?(job_applications_path)  %>">
         <%= link_to 'Career planning', profile_occupations_path, class: "nav-link" %>
         <ul class="nav-child" style="margin-left: 61px;">
           <li class="nav-item-child">
             <%= link_to 'Recommendations', profile_occupations_path, class: "nav-link-child #{ 'current' if params[:controller] == 'occupations'}" %>
+          </li>
+          <li class="nav-item-child">
+            <%= link_to 'GAP Report', gap_report_path, class: "nav-link-child #{ 'current' if params[:controller] == 'gap_reports'}" %>
           </li>
           <li class="nav-item-child">
             <%= link_to 'Job search', job_searches_path, class: "nav-link-child #{ 'current' if (params[:controller] == 'job_searches')}" %>

@@ -60,6 +60,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :gap_report, only: [:show]
+
   resources :job_applications, only: [:index]
   resources :job_searches, only: [:index]
 

@@ -15,7 +15,13 @@ Install Ruby 2.3.0
 
 # README
 
+In your Bluemix console, navigate to Apps dashboard and select "Create Application", search for "Ruby" and select the option from `Cloud Foundry Apps` section.
+Select the newly created app and add two services: `ElephantSQL` and `Object Storage`
+
 For deployment: 
 
-Download and install [Bluemix CLI](https://console.eu-gb.bluemix.net/?direct=classic/#/resources/appGuid=9abd803f-016d-4326-b22b-d3bde5f92ced&appName=test-prototype&orgGuid=efb57a2e-738d-4158-8c2e-5ad11b90b15a&spaceGuid=c19f84e6-4f4b-4793-a87e-5cd424fd3422)
+Download, install and authorize [Bluemix CLI](https://plugins.ng.bluemix.net/ui/home.html)
 
+Update `manifest.yml` with your application's name and 
+
+> bluemix cf push
